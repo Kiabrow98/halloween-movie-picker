@@ -10,35 +10,85 @@ const app = express();
 // Middleware - STATIC FILES MUST COME FIRST
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public')); // This MUST be before other routes
+app.use(express.static('public'));
 
 // Get API key from environment variable
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE = 'https://api.themoviedb.org/3';
 
-// API Routes first
+// API Routes
 app.get('/api/movie/:id', async (req, res) => {
-    // ... your existing API code
+    try {
+        const { id } = req.params;
+        console.log(`Fetching movie ID: ${id}`);
+        
+        const response = await fetch(`${TMDB_BASE}/movie/${id}?api_key=${TMDB_API_KEY}&language=en-US`);
+        
+        if (!response.ok) {
+            return res.status(404).json({ error: 'Movie not found' });
+        }
+        
+        const movie = await response.json();
+        res.json(movie);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Server error' });
+    }
 });
 
 app.get('/api/discover', async (req, res) => {
-    // ... your existing API code  
+    try {
+        const { genres, page = 1, vote_count = 50 } = req.query;
+        console.log(`Discovering movies: genres=${genres}, page=${page}`);
+        
+        const url = `${TMDB_BASE}/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${genres}&language=en-US&sort_by=popularity.desc&vote_count.gte=${vote_count}&page=${page}`;
+        
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            return res.status(400).json({ error: 'Failed to fetch movies' });
+        }
+        
+        const data = await response.json();
+        res.json(data);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Server error' });
+    }
 });
 
 app.get('/api/movie/:id/providers', async (req, res) => {
-    // ... your existing API code
+    try {
+        const { id } = req.params;
+        console.log(`Fetching providers for movie ID: ${id}`);
+        
+        const response = await fetch(`${TMDB_BASE}/movie/${id}/watch/providers?api_key=${TMDB_API_KEY}`);
+        
+        if (!response.ok) {
+            return res.status(404).json({ error: 'Providers not found' });
+        }
+        
+        const data = await response.json();
+        res.json(data);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Server error' });
+    }
 });
 
-// Root route LAST - this catches everything else
+// Root route - catch all unmatched routes and serve HTML
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Start server
+// Start server (only for local development)
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`🎃 Halloween Movie Picker server running on port ${PORT}`);
-    console.log(`Visit: http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`🎃 Halloween Movie Picker server running on port ${PORT}`);
+        console.log(`Visit: http://localhost:${PORT}`);
+    });
+}
 
+// Export for Vercel
 module.exports = app;
