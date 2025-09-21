@@ -3,11 +3,16 @@ const path = require('path');
 
 const app = express();
 
-// Static middleware MUST come first and be very specific
+// Static middleware first
 app.use(express.static('public'));
 
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE = 'https://api.themoviedb.org/3';
+
+// Root route - specific path only
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 app.get('/test', (req, res) => {
     res.json({ status: 'working', hasKey: !!TMDB_API_KEY });
@@ -44,8 +49,5 @@ app.get('/api/movie/:id/providers', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
-// REMOVE the catch-all route completely for now
-// The static middleware should handle serving index.html for the root
 
 module.exports = app;
