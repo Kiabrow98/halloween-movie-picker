@@ -1,3 +1,6 @@
+const path = require('path');
+
+
 // Load environment variables from .env file
 require('dotenv').config();
 const express = require('express');
@@ -14,6 +17,11 @@ app.use(express.static('public')); // Serve frontend files
 // Get API key from environment variable
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE = 'https://api.themoviedb.org/3';
+
+// Serve the main HTML file at root
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // API Routes (these replace direct TMDB calls)
 
