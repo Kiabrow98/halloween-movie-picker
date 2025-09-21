@@ -86,4 +86,4 @@ app.listen(PORT, () => {
     console.log(`Visit: http://localhost:${PORT}`);
 });
 
-
+module.exports = app;
