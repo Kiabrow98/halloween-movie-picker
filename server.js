@@ -3,6 +3,7 @@ const path = require('path');
 
 const app = express();
 
+// Static middleware MUST come first and be very specific
 app.use(express.static('public'));
 
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
@@ -12,6 +13,7 @@ app.get('/test', (req, res) => {
     res.json({ status: 'working', hasKey: !!TMDB_API_KEY });
 });
 
+// API routes
 app.get('/api/movie/:id', async (req, res) => {
     try {
         const response = await fetch(`${TMDB_BASE}/movie/${req.params.id}?api_key=${TMDB_API_KEY}`);
@@ -35,7 +37,7 @@ app.get('/api/discover', async (req, res) => {
 
 app.get('/api/movie/:id/providers', async (req, res) => {
     try {
-        const response = await fetch(`${TMDB_BASE}/movie/${req.params.id}/watch/providers?api_key=${TMDB_API_KEY}`);
+        const response = await fetch(`${TMDB_BASE}/movie/${req.params.id}/providers?api_key=${TMDB_API_KEY}`);
         const data = await response.json();
         res.json(data);
     } catch (error) {
@@ -43,8 +45,7 @@ app.get('/api/movie/:id/providers', async (req, res) => {
     }
 });
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+// REMOVE the catch-all route completely for now
+// The static middleware should handle serving index.html for the root
 
 module.exports = app;
