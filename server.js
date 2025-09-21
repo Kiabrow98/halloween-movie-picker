@@ -1,17 +1,37 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
-
-// Static middleware first
-app.use(express.static('public'));
 
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE = 'https://api.themoviedb.org/3';
 
-// Root route - specific path only
+// Explicit static file routes
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/script.js', (req, res) => {
+    res.setHeader('Content-Type', 'application/javascript');
+    res.sendFile(path.join(__dirname, 'public', 'script.js'));
+});
+
+app.get('/styles/:filename', (req, res) => {
+    res.setHeader('Content-Type', 'text/css');
+    res.sendFile(path.join(__dirname, 'public', 'styles', req.params.filename));
+});
+
+app.get('/images/:filename', (req, res) => {
+    const ext = path.extname(req.params.filename).toLowerCase();
+    const mimeTypes = {
+        '.jpg': 'image/jpeg',
+        '.jpeg': 'image/jpeg',
+        '.png': 'image/png',
+        '.gif': 'image/gif'
+    };
+    res.setHeader('Content-Type', mimeTypes[ext] || 'image/jpeg');
+    res.sendFile(path.join(__dirname, 'public', 'images', req.params.filename));
 });
 
 app.get('/test', (req, res) => {
