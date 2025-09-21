@@ -1,0 +1,24 @@
+body {
+    background-color: #1a1a1a;
+    margin-bottom: 100px;
+    font-family: Roboto, Arial;
+    font-weight: bold;
+}
+
+#movieDisplay {
+    color: thistle;
+    font-size: 15px;
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 400px;
+}
+.movieDisplayImage {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgb(127, 127, 127);
+}
+

@@ -1,0 +1,40 @@
+.flexbox-heading {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: space-evenly;
+    text-align: center;
+    color: red;
+}
+.first-section {
+    max-width: 300px;
+    flex: 1;
+}
+.second-section {
+    max-width: 300px;
+    flex: 1;
+    text-decoration: underline;
+}
+.second-section:hover {
+    color: white;
+}
+.third-section {
+    max-width: 300px;
+    flex: 1;
+}
+.flexbox-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px auto;
+    margin-top: 100px;
+}
+.scare-selector-button {
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid black;
+    border-radius: 5px;
+    color: red;
+    font-size: 15px;
+    padding: 15px 15px;
+}

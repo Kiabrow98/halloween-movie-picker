@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>31 Screams</title>
+  <link rel="stylesheet" href="styles/aboutme.css">
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/grid.css">
+  <link rel="stylesheet" href="styles/footer.css">
+  <link rel="stylesheet" href="styles/flexbox.css">
+  <script src="script.js"></script>
+</head>
+<body>
+
+  <!--This is the heading info -->
+  <div>
+<h1 class="heading"> 🎃 31 Screams 🎃</h1>
+</div>
+
+<!--This is the flexbox-->
+<div class="flexbox-heading">
+<div class="third-section" onclick="location.href='aboutme.html'">About Me</div>
+</div>
+<!--This is the pick your genre header-->
+<p class="pick-genre">Pick Your Genre</p>
+
+<!--This is the grid layout for genres 1-->
+<main>
+  <section class="genre-grid">
+    <div class="genre-card" onclick="pickSlasherMovie()">
+      <div class="genre-wrapper">
+        <img class="genre-images" 
+          src="/images/pexels-aldairwow-29213530.jpg" alt="Comedic">
+          <div class="genre-overlay">Slasher</div>
+    </div>
+   </div>
+<!--this is the grid layout for genres 2-->
+     <div class="genre-card" onclick="pickDemonicMovie()">
+      <div class="genre-wrapper">
+        <img class="genre-images" 
+          src="/images/pexels-unpoquitodefoto-18256209.jpg" alt="Michael Myers and Ghostface taking a selfie">
+          <div class="genre-overlay">Demonic</div>
+    </div>
+   </div>
+<!--this is the grid layout for genre 3-->
+     <div class="genre-card" onclick="pickParanormalMovie()">
+      <div class="genre-wrapper">
+        <img class="genre-images" 
+          src="/images/pexels-rozegold-2449605.jpg" alt="Ghost inside of the door">
+          <div class="genre-overlay">Paranormal</div>
+    </div>
+   </div>
+<!--this is the grid layout for genre 4-->
+     <div class="genre-card" onclick="pickMonsterMovie()">
+      <div class="genre-wrapper">
+        <img class="genre-images" 
+          src="/images/pexels-gustavo-martinez-1539476028-30299172.jpg" alt="Monster">
+          <div class="genre-overlay">Monster</div>
+    </div>
+   </div>
+<!--this is the grid layout for genre 5-->
+     <div class="genre-card" onclick="pickZombieMovie()">
+      <div class="genre-wrapper">
+        <img class="genre-images" 
+          src="/images/pexels-cottonbro-5435454.jpg" alt="Zombies in front of a car">
+          <div class="genre-overlay">Zombie</div>
+    </div>
+   </div>
+<!--this is the grid layout for genre 6-->
+     <div class="genre-card" onclick="pickGoreMovie()">
+      <div class="genre-wrapper">
+        <img class="genre-images" 
+          src="/images/pexels-elina-araja-1743227-3339126.jpg" alt="Bloody hand">
+          <div class="genre-overlay">Gore</div>
+    </div>
+   </div>
+<!--this is the grid layout for genre 7-->
+     <div class="genre-card" onclick="pickKidsMovie()">
+      <div class="genre-wrapper">
+        <img class="genre-images" 
+          src="/images/pexels-thirdman-5415837.jpg" alt="Kids dressed up as bats for halloween">
+          <div class="genre-overlay">Kids</div>
+    </div>
+   </div>
+<!--this is the grid layout for genre 8-->
+     <div class="genre-card" onclick="pickVampireMovie()">
+      <div class="genre-wrapper">
+        <img class="genre-images" 
+          src="/images/pexels-cottonbro-5546480.jpg" alt="Vampire teeth">
+          <div class="genre-overlay">Vampire</div>
+    </div>
+   </div>
+<!--this is the grid layout for genre 9-->
+     <div class="genre-card" onclick="pickPsychologicalMovie()">
+      <div class="genre-wrapper">
+        <img class="genre-images" 
+          src="/images/pexels-ian-panelo-3375857.jpg" alt="Psychological person">
+          <div class="genre-overlay">Psychological</div>
+    </div>
+   </div>
+<!--this is the grid layout for genre 10-->
+     <div class="genre-card" onclick="pickComedyMovie()">
+      <div class="genre-wrapper">
+        <img class="genre-images" 
+          src="/images/pexels-lee-chinyama-92380529-9703546.jpg" alt="Person dressed up as Chucky">
+          <div class="genre-overlay">Comedy</div>
+    </div>
+  </div>
+  </section>
+  <!--this is the scare selector button flexbox-->
+  <div class="button-container">
+    <button class="scare-selectorbutton" onclick="scareSelector()">scare selector</button>
+  </div>
+
+<!--this is the movie display area-->
+<div class="movie-display-container">
+<div id="movieDisplay"></div>
+</div>
+  </div>
+</main>
+      </div>
+    </main>
+    </body>
+</html>
