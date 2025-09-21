@@ -1,14 +1,9 @@
-// Load environment variables from .env file
-require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
 const path = require('path');
 
-// Create Express app
 const app = express();
 
-// Middleware - STATIC FILES MUST COME FIRST
-app.use(cors());
+// Middleware
 app.use(express.json());
 app.use(express.static('public'));
 
@@ -16,11 +11,19 @@ app.use(express.static('public'));
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE = 'https://api.themoviedb.org/3';
 
+// Basic health check
+app.get('/health', (req, res) => {
+    res.json({ status: 'OK', apiKey: !!TMDB_API_KEY });
+});
+
 // API Routes
 app.get('/api/movie/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        console.log(`Fetching movie ID: ${id}`);
+        
+        if (!TMDB_API_KEY) {
+            return res.status(500).json({ error: 'API key not configured' });
+        }
         
         const response = await fetch(`${TMDB_BASE}/movie/${id}?api_key=${TMDB_API_KEY}&language=en-US`);
         
@@ -32,14 +35,17 @@ app.get('/api/movie/:id', async (req, res) => {
         res.json(movie);
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({ error: 'Server error', details: error.message });
     }
 });
 
 app.get('/api/discover', async (req, res) => {
     try {
         const { genres, page = 1, vote_count = 50 } = req.query;
-        console.log(`Discovering movies: genres=${genres}, page=${page}`);
+        
+        if (!TMDB_API_KEY) {
+            return res.status(500).json({ error: 'API key not configured' });
+        }
         
         const url = `${TMDB_BASE}/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${genres}&language=en-US&sort_by=popularity.desc&vote_count.gte=${vote_count}&page=${page}`;
         
@@ -53,14 +59,17 @@ app.get('/api/discover', async (req, res) => {
         res.json(data);
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({ error: 'Server error', details: error.message });
     }
 });
 
 app.get('/api/movie/:id/providers', async (req, res) => {
     try {
         const { id } = req.params;
-        console.log(`Fetching providers for movie ID: ${id}`);
+        
+        if (!TMDB_API_KEY) {
+            return res.status(500).json({ error: 'API key not configured' });
+        }
         
         const response = await fetch(`${TMDB_BASE}/movie/${id}/watch/providers?api_key=${TMDB_API_KEY}`);
         
@@ -72,23 +81,17 @@ app.get('/api/movie/:id/providers', async (req, res) => {
         res.json(data);
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({ error: 'Server error', details: error.message });
     }
 });
 
-// Root route - catch all unmatched routes and serve HTML
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// Catch-all route - MUST BE LAST
+app.get('/*', (req, res) => {
+    try {
+        res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    } catch (error) {
+        res.status(500).send('Error serving file');
+    }
 });
 
-// Start server (only for local development)
-const PORT = process.env.PORT || 3000;
-if (process.env.NODE_ENV !== 'production') {
-    app.listen(PORT, () => {
-        console.log(`🎃 Halloween Movie Picker server running on port ${PORT}`);
-        console.log(`Visit: http://localhost:${PORT}`);
-    });
-}
-
-// Export for Vercel
 module.exports = app;
