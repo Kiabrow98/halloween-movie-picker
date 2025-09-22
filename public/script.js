@@ -418,3 +418,24 @@ async function scareSelector() {
         document.getElementById('movieDisplay').innerHTML = `<p>Error loading horror movie. Please try again!</p>`;
     }
 }
+
+// Function to show the About Me section
+function showAboutMe() {
+    // Hide the main content
+    document.querySelector('main').style.display = 'none';
+    document.querySelector('.flexbox-heading').style.display = 'none';
+    document.querySelector('.pick-genre').style.display = 'none';
+    
+    // Show about me section
+    document.getElementById('aboutMeSection').style.display = 'block';
+}
+
+function showHomePage() {
+    // Show the main content
+    document.querySelector('main').style.display = 'block';
+    document.querySelector('.flexbox-heading').style.display = 'block';
+    document.querySelector('.pick-genre').style.display = 'block';
+    
+    // Hide about me section
+    document.getElementById('aboutMeSection').style.display = 'none';
+}

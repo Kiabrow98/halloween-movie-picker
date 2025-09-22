@@ -20,7 +20,7 @@
 
 <!--This is the flexbox-->
 <div class="flexbox-heading">
-<div class="third-section" onclick="location.href='/api/aboutme'">About Me</div>
+<div class="third-section" onclick="showAboutMe()">About Me</div>
 </div>
 <!--This is the pick your genre header-->
 <p class="pick-genre">Pick Your Genre</p>
@@ -121,5 +121,39 @@
 </main>
       </div>
     </main>
+<div id="aboutMeSection" style="display: none;">
+    <h1>About Me</h1>
+
+
+
+<div class="aboutme-container">
+    <img id="photo-of-kia" src="/aboutmeimage/IMG_1693.jpeg" alt="Kia Brown">
+<p class="about-me">
+🎃
+Hi, my name is Kia and welcome to my Halloween Movie Picker! 🎃
+Halloween has always been my favorite time of year, and combining my love for coding with my love for Halloween inspired me to create this project. 
+I’m currently a software engineering student, and this is my very first project in web development. 
+While it may not solve any real-world problems, it was a fun way for me to learn the basics and bring a little spooky fun to life.
+
+Over time, I plan to keep adding more movies and new features to make the site even better. 
+I hope you enjoy exploring it, and if you have any suggestions, feel free to reach out to me by email or connect with me on LinkedIn.
+ Thanks for checking out my project and enjoy the spooky season! 👻
+</p><div class="social-buttons">
+            <a href="https://www.linkedin.com/in/kia-brown-bb1498351/" target="_blank" rel="noopener noreferrer" class="social-btn linkedin-btn">
+                <span class="btn-icon">💼</span>
+                <span class="btn-text">Connect on LinkedIn</span>
+            </a>
+            <a href="mailto:kiabrow98@gmail.com" class="social-btn email-btn">
+                <span class="btn-icon">📧</span>
+                <span class="btn-text">Send me an Email</span>
+            </a>
+        </div>
+    </div>
+
+</div>
+    <button onclick="showHomePage()">Back to Movie Picker</button>
+</div>
+
+
     </body>
 </html>
