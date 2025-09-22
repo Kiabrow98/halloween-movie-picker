@@ -243,3 +243,27 @@
                 font-size: 13px;
             }
         }
+
+            #aboutMeSection h1 {
+            text-align: center;
+            color: #ff6b35; /* Orange color like your site */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-weight: bold;
+        }
+            #aboutMeSection .back-button {
+            background-color: #ff6b35;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        #aboutMeSection .back-button:hover {
+            background-color: #cc0000;
+            transform: translateY(-2px);
+}
