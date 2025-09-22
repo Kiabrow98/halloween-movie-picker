@@ -250,20 +250,28 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
             font-weight: bold;
         }
-            #aboutMeSection .back-button {
-            background-color: #ff6b35;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            text-transform: uppercase;
-        }
+#aboutMeSection .back-button {
+    background: linear-gradient(135deg, #ff6b35, #ff8c42);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 20px auto;
+    display: block;
+    box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
+}
 
-        #aboutMeSection .back-button:hover {
-            background-color: #cc0000;
-            transform: translateY(-2px);
+#aboutMeSection .back-button:hover {
+    background: linear-gradient(135deg, #ff8c42, #ffaa66);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 107, 53, 0.4);
+}
+
+#aboutMeSection .back-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(255, 107, 53, 0.3);
 }
