@@ -419,12 +419,15 @@ async function scareSelector() {
     }
 }
 
-// Function to show the About Me section
 function showAboutMe() {
     // Hide the main content
     document.querySelector('main').style.display = 'none';
     document.querySelector('.flexbox-heading').style.display = 'none';
     document.querySelector('.pick-genre').style.display = 'none';
+    
+    // Hide any existing back buttons from the main page
+    const existingBackButtons = document.querySelectorAll('.back-button');
+    existingBackButtons.forEach(btn => btn.style.display = 'none');
     
     // Show about me section
     document.getElementById('aboutMeSection').style.display = 'block';
@@ -438,4 +441,7 @@ function showHomePage() {
     
     // Hide about me section
     document.getElementById('aboutMeSection').style.display = 'none';
+    
+    // Clear any movie displays that might have back buttons
+    document.getElementById('movieDisplay').innerHTML = '';
 }
