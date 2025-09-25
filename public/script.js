@@ -95,116 +95,451 @@ async function getStreamingAvailability(movieId) {
     }
 }
 
-async function getRandomHorrorMovie() {
-    try {
-        console.log('Scare Selector: Fetching random horror movie...');
-        
-        const randomPage = Math.floor(Math.random() * 10) + 1;
-        const response = await fetch(`/api/discover?genres=27&page=${randomPage}&vote_count=100`);
-        
-        if (!response.ok) {
-            console.error('API request failed');
-            return null;
-        }
-        
-        const data = await response.json();
-        const movies = data.results || [];
-        
-        console.log(`Found ${movies.length} horror movies from page ${randomPage}`);
-        
-        if (movies.length > 0) {
-            const randomMovie = movies[Math.floor(Math.random() * movies.length)];
-            console.log('Selected random horror movie:', randomMovie.title);
-            return randomMovie;
-        }
-        
-        return null;
-    } catch (error) {
-        console.error('Error fetching random horror movie:', error);
-        return null;
-    }
-}
 
 // Custom movie arrays with VERIFIED TMDB IDs
 const customMovies = {
     slasher: [
-        { id: 948, title: "Halloween", year: 1978 },
-        { id: 377, title: "A Nightmare on Elm Street", year: 1984 },
-        { id: 4232, title: "Scream", year: 1996 },
-        { id: 176, title: "Saw", year: 2004 },
+        { id: 948, title: "Halloween", year: 1978 },          // VERIFIED
+        { id: 377, title: "A Nightmare on Elm Street", year: 1984 }, // VERIFIED
+        { id: 4232, title: "Scream", year: 1996 },           // Need to verify
+        { id: 176, title: "Saw", year: 2004 },              // Need to verify
         { id: 86328, title: "Terrifier", year: 2011 },
+        { id: 13885, title: "Sweeney Todd: The Demon Barber of Fleet Street", year: 2007 },
         { id: 9529, title: "Candyman", year: 1992 },
-        { id: 4488, title: "Friday the 13th", year: 1980 },
+        { id: 565028, title: "Candyman", year: 2021 },
+        { id: 1234, title: "Child's Play", year: 1988 },
+        { id: 10320, title: "Child's Play 2", year: 1990 },
+        { id: 10321, title: "Child's Play 3", year: 1991 },
+        { id: 11932, title: "Bride of Chucky", year: 1998 },
+        { id: 11249, title: "Seed of Chucky", year: 2004 },
+        { id: 167032, title: "Curse of Chucky", year: 2013 },
+        { id: 393345, title: "Cult of Chucky", year: 2017 },
+        { id: 424139, title: "Child's Play", year: 2019 },
+        { id: 53133, title: "Halloween (2018)", year: 2018 },
+        { id: 2082,  title: "Halloween (2007)", year: 2007 },
+        { id: 24150, title: "Halloween II", year: 2009 },
+        { id: 11281, title: "Halloween II", year: 1981 },
+        { id: 10676, title: "Halloween III: Season of the Witch", year: 1982 },
+        { id: 11357, title: "Halloween 4: The Return of Michael Myers", year: 1988 },
+        { id: 11361, title: "Halloween 5: The Revenge of Michael Myers", year: 1989 },
+        { id: 10987, title: "Halloween: The Curse of Michael Myers", year: 1995 },
+        { id: 11675, title: "Halloween H20: 20 Years Later", year: 1998 },
+        { id: 11442, title: "Halloween: Resurrection", year: 2002 },
         { id: 4233, title: "Scream 2", year: 1997 },
-        { id: 440021, title: "Happy Death Day", year: 2017 }
+        { id: 4234, title: "Scream 3", year: 2000 },
+        { id: 41446, title: "Scream 4", year: 2011 },
+        { id: 440021, title: "Happy Death Day", year: 2017 },
+        { id: 512196, title: "Happy Death Day 2U", year: 2019 },
+        { id: 23437, title: "A Nightmare on Elm Street", year: 2010 },
+        { id: 4488, title: "Friday the 13th", year: 1980 },
+        { id: 13207, title: "Friday the 13th", year: 2009 },
+        { id: 9725, title: "Friday the 13th Part 2", year: 1981 },
+        { id: 9728, title: "Friday the 13th Part III", year: 1982 },
+        { id: 9730, title: "Friday the 13th: The Final Chapter", year: 1984 },
+        { id: 9731, title: "Friday the 13th: A New Beginning", year: 1985 },
+        { id: 10225, title: "Friday the 13th Part VI: Jason Lives", year: 1986 },
+        { id: 10281, title: "Friday the 13th Part VII: The New Blood", year: 1988 },
+        { id: 6466, title: "Freddy vs. Jason", year: 2003 }
     ],
     demonic: [
-        { id: 9552, title: "The Exorcist", year: 1973 },
-        { id: 138843, title: "The Conjuring", year: 2013 },
-        { id: 419704, title: "Hereditary", year: 2018 },
+        { id: 9552, title: "The Exorcist", year: 1973 },      // Need to verify
+        { id: 138843, title: "The Conjuring", year: 2013 },  // Need to verify
+        { id: 419704, title: "Hereditary", year: 2018 },      // Need to verify
+        { id: 8643, title: "The Exorcism of Emily Rose", year: 2005 }, 
+        { id: 48171, title: "The Rite", year: 2011 },
+        { id: 1038392, title: "The Conjuring: Last Rites", year: 2025 },
+        { id: 38358, title: "The Last Exorcism", year: 2010 },
+        { id: 146203, title: "The Last Exorcism Part II", year: 2013 },
+        { id: 77883, title: "The Possession", year: 2012 },
         { id: 49018, title: "Insidious", year: 2011 },
+        { id: 91586, title: "Insidious: Chapter 2", year: 2013 },
+        { id: 406563, title: "Insidious: The Last Key", year: 2018 },
+        { id: 614479, title: "Insidious: The Red Door", year: 2023 },
         { id: 259693, title: "The Conjuring 2", year: 2016 },
+        { id: 423108, title: "The Conjuring: The Devil Made Me Do It", year: 2021 },
+        { id: 250546, title: "Annabelle", year: 2014 },
+        { id: 396422, title: "Annabelle: Creation", year: 2017 },
+        { id: 521029, title: "Annabelle Comes Home", year: 2019 },
+        { id: 150202, title: "The Haunting in Connecticut", year: 2009 },
+        { id: 806, title: "The Omen", year: 2006 },
+        { id: 242512, title: "Ouija", year: 2014 },
+        { id: 335796, title: "Ouija: Origin of Evil", year: 2016 },
+        { id: 297608, title: "The Taking of Deborah Logan", year: 2014 },
         { id: 82507, title: "Sinister", year: 2012 },
-        { id: 439079, title: "The Nun", year: 2018 }
+        { id: 283445, title: "Sinister 2", year: 2015 },
+        { id: 280092, title: "Insidious: Chapter 3", year: 2015 },
+        { id: 11449, title: "The Amityville Horror", year: 1979 },
+        { id: 10065, title: "The Amityville Horror", year: 2005 },
+        { id: 1970, title: "The Grudge", year: 2004 },
+        { id: 1975, title: "The Grudge 2", year: 2006 },
+        { id: 1977, title: "The Grudge 3", year: 2009 },
+        { id: 565, title: "The Ring", year: 2002 },
+        { id: 9059, title: "Tales from the Crypt: Demon Knight", year: 1995 },
+        { id: 627462, title: "Tales from the Crypt: Volume 2", year: 1992 },
+        { id: 585282, title: "Tales from the Crypt: Volume 3", year: 1990 },
+        { id: 439079, title: "The Nun", year: 2018 },
+        { id: 11380, title: "Bones", year: 2001 }
     ],
     paranormal: [
-        { id: 745, title: "The Sixth Sense", year: 1999 },
-        { id: 565, title: "The Ring", year: 2002 },
-        { id: 609, title: "Poltergeist", year: 1982 },
+        { id: 745, title: "The Sixth Sense", year: 1999 },   // Need to verify
+        { id: 565, title: "The Ring", year: 2002 },          // Need to verify
+        { id: 1085, title: "Poltergeist", year: 1982 },       // Need to verify
+        { id: 9913, title: "The Skeleton Key", year: 2005 },
         { id: 694, title: "The Shining", year: 1980 },
+        { id: 609, title: "Poltergeist", year: 1982 },
+        { id: 745, title: "The Sixth Sense", year: 1999 },
         { id: 23827, title: "Paranormal Activity", year: 2007 },
-        { id: 8913, title: "Pet Sematary", year: 1989 }
+        { id: 41436, title: "Paranormal Activity 2", year: 2010 },
+        { id: 41437, title: "Paranormal Activity 3", year: 2011 },
+        { id: 82990, title: "Paranormal Activity 4", year: 2012 },
+        { id: 146301, title: "Paranormal Activity: The Ghost Dimension", year: 2015},
+        { id: 227348, title: "Paranormal Activity: The Marked Ones", year: 2014},
+        { id: 11449, title: "The Amityville Horror", year: 1979 },
+        { id: 10065, title: "The Amityville Horror", year: 2005 },
+        { id: 8913, title: "Pet Sematary", year: 1989 },
+        { id: 157433, title: "Pet Sematary", year: 2019 },
+        { id: 9030, title: "The Eye", year: 2008 },
     ],
     monster: [
-        { id: 348, title: "Alien", year: 1979 },
-        { id: 1091, title: "The Thing", year: 1982 },
+        { id: 348, title: "Alien", year: 1979 },             // Need to verify
+        { id: 1091, title: "The Thing", year: 1982 },        // Need to verify
+        { id: 106, title: "Predator", year: 1987 },          // Need to verify
+        { id: 19614, title: "IT", year: 1990}, 
         { id: 346364, title: "IT", year: 2017 },
+        { id: 474350, title: "IT Chapter Two", year: 2019 },
+        { id: 9792, title: "The Hills Have Eyes", year: 2006 },
         { id: 242224, title: "The Babadook", year: 2014 },
-        { id: 5876, title: "The Mist", year: 2007 }
+        { id: 5876, title: "The Mist", year: 2007 },
+        { id: 2756, title: "The Abyss", year: 1989 },
+        { id: 9902, title: "Wrong Turn", year: 2003 },
+        { id: 9360, title: "Anaconda", year: 1997},
+        { id: 913290, title: "Barbarian", year: 2022 }
     ],
     zombie: [
-        { id: 170, title: "28 Days Later", year: 2002 },
+        { id: 170, title: "28 Days Later", year: 2002 },    
         { id: 396535, title: "Train to Busan", year: 2016 },
+        { id: 10331, title: "Night of the Living Dead", year: 1968 },
         { id: 924, title: "Dawn of the Dead", year: 2004 },
+        { id: 923, title: "Dawn of the Dead", year: 1978 },
+        { id: 1100988, title: "28 Years Later", year: 2025 },
+        { id: 375366, title: "The Girl with All the Gifts", year: 2016 },
+        { id: 72190, title: "World War Z", year: 2013 },
         { id: 19908, title: "Zombieland", year: 2009 },
-        { id: 72190, title: "World War Z", year: 2013 }
+        { id: 338967, title: "Zombieland: Double Tap", year: 2019 }
     ],
     gore: [
-        { id: 176, title: "Saw", year: 2004 },
+        { id: 176, title: "Saw", year: 2004 },             
         { id: 1690, title: "Hostel", year: 2006 },
-        { id: 9373, title: "The Texas Chainsaw Massacre", year: 2003 },
+        { id: 9373, title: "The Texas Chainsaw Massacre", year: 2004 },
+        { id: 10781, title: "The Texas Chainsaw Massacre: THer Beginning", year: 2006 },
+        { id: 28429, title: "The Texas Chainsaw Massacre: A Family Portrait", year: 1988 },
+        { id: 10066, title: "House of Wax", year: 2005 },
+        { id: 103620, title: "Maniac", year: 2012 },
+        { id: 2251, title: "Ichi the Killer", year: 2001 },
+        { id: 12491, title: "High Tension", year: 2003 },
         { id: 663712, title: "Terrifier 2", year: 2022 },
+        { id: 16921, title: "Autopsy", year: 2008 },
+        { id: 604079, title: "The Long Walk", year: 2025 },
         { id: 19994, title: "Jennifer's Body", year: 2009 }
     ],
     kids: [
-        { id: 14836, title: "Coraline", year: 2009 },
-        { id: 9479, title: "The Nightmare Before Christmas", year: 1993 },
+        { id: 14836, title: "Coraline", year: 2009 },        // Need to verify
+        { id: 9479, title: "The Nightmare Before Christmas", year: 1993 }, // Need to verify
+        { id: 21481, title: "Twitches", year: 2005 },
+        { id: 46169, title: "Twitches Too", year: 2007 },
         { id: 10439, title: "Hocus Pocus", year: 1993 },
+        { id: 642885, title: "Hocus Pocus 2", year: 2022 },
+        { id: 8839, title: "Casper", year: 1995 }, 
+        { id: 70772, title: "Don't Look Under the Bed", year: 1999 },
+        { id: 62214, title: "Frankenweenie", year: 2012 },
+        { id: 927, title: "Gremlins", year: 1984 },
+        { id: 928, title: "Gremlins 2: The New Batch", year: 1990 },
+        { id: 3933, title: "Corpse Bride", year: 2005 },
         { id: 4011, title: "Beetlejuice", year: 1988 },
         { id: 9297, title: "Monster House", year: 2006 },
-        { id: 927, title: "Gremlins", year: 1984 }
+        { id: 27850, title: "Halloweentown", year: 1998 },
+        { id: 34205, title: "Halloweentown II: Kalabar's Revenge", year: 2001 },
+        { id: 34560, title: "Halloweentown High", year: 2004 },
+        { id: 34204, title: "Return to Halloweentown", year: 2006 },
+        { id: 2907, title: "The Addams Family", year: 1991 },
+        { id: 2758, title: "Addams Family Values", year: 1993 },
+        { id: 24100, title: "The Little Vampire", year: 2000 },
+        { id: 10756, title: "The Haunted Mansion", year: 2003 },
+        { id: 162, title: "Edward Scissorhands", year: 1990 },
+        { id: 671, title: "Harry Potter and the Philosopher's Stone", year: 2001 },
+        { id: 672, title: "Harry Potter and the Chamber of Secrets", year: 2002 },
+        { id: 673, title: "Harry Potter and the Prisoner of Azkaban", year: 2004 },
+        { id: 674, title: "Harry Potter and the Goblet of Fire", year: 2005 },
+        { id: 675, title: "Harry Potter and the Order of the Phoenix", year: 2007 },
+        { id: 767, title: "Harry Potter and the Half-Blood Prince", year: 2009 },
+        { id: 12444, title: "Harry Potter and the Deathly Hallows: Part 1", year: 2010 },
+        { id: 12445, title: "Harry Potter and the Deathly Hallows: Part 2", year: 2011 }
     ],
     vampire: [
         { id: 628, title: "Interview with the Vampire", year: 1994 },
         { id: 1547, title: "The Lost Boys", year: 1987 },
         { id: 36647, title: "Blade", year: 1998 },
+        { id: 1233413, title: "Sinners", year: 2025},
+        { id: 30566, title: "Blacula", year: 1972 },
+        { id: 12158, title: "Vampire in Brooklyn", year: 1995 },
         { id: 4513, title: "30 Days of Night", year: 2007 },
-        { id: 277, title: "Underworld", year: 2003 }
+        { id: 42941, title: "30 Days of Night: Dark Days", year: 2010 },
+        { id: 19901, title: "Daybreakers", year: 2010 },
+        { id: 41402, title: "Let Me In", year: 2010 },
+        { id: 36586, title: "Brade II", year: 2002 },
+        { id: 277, title: "Underworld", year: 2003 },
+        { id: 834, title: "Underworld: Evolution", year: 2006 },
+        { id: 12437, title: "Underworld: Rise of the Lycans", year: 2009 },
+        { id: 52520, title: "Underworld: Awakening", year: 2012 },
+        { id: 346672, title: "Underworld: Blood Wars", year: 2016 }
     ],
     psychological: [
         { id: 274, title: "The Silence of the Lambs", year: 1991 },
+        { id: 11252, title: "Psycho", year: 1998 },             // Need to verify
+        { id: 2291, title: "Jacob's Ladder", year: 1990 },
+        { id: 456529, title: "Jacob's Ladder", year: 2019 },
         { id: 807, title: "Se7en", year: 1995 },
         { id: 1359, title: "American Psycho", year: 2000 },
+        { id: 44214, title: "Black Swan", year: 2010 },
+        { id: 11324, title: "Shutter Island", year: 2010 },
+        { id: 4553, title: "The Machinist", year: 2004 },
+        { id: 1933, title: "The Others", year: 2001 },
         { id: 419430, title: "Get Out", year: 2017 },
         { id: 381288, title: "Split", year: 2016 },
-        { id: 530385, title: "Midsommar", year: 2019 }
+        { id: 458723, title: "US", year: 2019 },
+        { id: 530385, title: "Midsommar", year: 2019 },
+        { id: 503919, title: "The Lighthouse", year: 2019 },
+        { id: 10972, title: "Session 9", year: 2001 },
+        { id: 4552, title: "A Tale of Two Sisters", year : 2003 },
+        { id: 1954, title: "The Butterfly Effect", year: 2004 },
+        { id: 4970, title: "Gothika", year: 2003 },
+        { id: 814800, title: "Goodnight Mommy", year: 2014 },
+        { id: 399057, title: "The Kiling of a Sacred Deer", year: 2017 },
+        { id: 502416, title: "Ma", year: 2019 },
+        { id: 21208, title: "Orphan", year: 2009 },
     ],
     comedy: [
         { id: 747, title: "Shaun of the Dead", year: 2004 },
-        { id: 620, title: "Ghostbusters", year: 1984 },
+        { id: 620, title: "Ghostbusters", year: 1984 },       
+        { id: 43074, title: "Ghostbusters", year: 2016 },
         { id: 4247, title: "Scary Movie", year: 2000 },
-        { id: 4248, title: "Scary Movie 2", year: 2001 }
-    ]
+        { id: 4248, title: "Scary Movie 2", year: 2001 },
+        { id: 4256, title: "Scary Movie 3", year: 2003 },
+        { id: 4257, title: "Scary Movie 4", year: 2006 },
+        { id: 4258, title: "Scary Movie 5", year: 2013 },
+    ],
+    horror: [
+        { id: 948, title: "Halloween", year: 1978 },          // VERIFIED
+        { id: 377, title: "A Nightmare on Elm Street", year: 1984 }, // VERIFIED
+        { id: 4232, title: "Scream", year: 1996 },           // Need to verify
+        { id: 176, title: "Saw", year: 2004 },              // Need to verify
+        { id: 86328, title: "Terrifier", year: 2011 },
+        { id: 13885, title: "Sweeney Todd: The Demon Barber of Fleet Street", year: 2007 },
+        { id: 9529, title: "Candyman", year: 1992 },
+        { id: 565028, title: "Candyman", year: 2021 },
+        { id: 1234, title: "Child's Play", year: 1988 },
+        { id: 10320, title: "Child's Play 2", year: 1990 },
+        { id: 10321, title: "Child's Play 3", year: 1991 },
+        { id: 11932, title: "Bride of Chucky", year: 1998 },
+        { id: 11249, title: "Seed of Chucky", year: 2004 },
+        { id: 167032, title: "Curse of Chucky", year: 2013 },
+        { id: 393345, title: "Cult of Chucky", year: 2017 },
+        { id: 424139, title: "Child's Play", year: 2019 },
+        { id: 53133, title: "Halloween (2018)", year: 2018 },
+        { id: 2082,  title: "Halloween (2007)", year: 2007 },
+        { id: 24150, title: "Halloween II", year: 2009 },
+        { id: 11281, title: "Halloween II", year: 1981 },
+        { id: 10676, title: "Halloween III: Season of the Witch", year: 1982 },
+        { id: 11357, title: "Halloween 4: The Return of Michael Myers", year: 1988 },
+        { id: 11361, title: "Halloween 5: The Revenge of Michael Myers", year: 1989 },
+        { id: 10987, title: "Halloween: The Curse of Michael Myers", year: 1995 },
+        { id: 11675, title: "Halloween H20: 20 Years Later", year: 1998 },
+        { id: 11442, title: "Halloween: Resurrection", year: 2002 },
+        { id: 4233, title: "Scream 2", year: 1997 },
+        { id: 4234, title: "Scream 3", year: 2000 },
+        { id: 41446, title: "Scream 4", year: 2011 },
+        { id: 440021, title: "Happy Death Day", year: 2017 },
+        { id: 512196, title: "Happy Death Day 2U", year: 2019 },
+        { id: 23437, title: "A Nightmare on Elm Street", year: 2010 },
+        { id: 4488, title: "Friday the 13th", year: 1980 },
+        { id: 13207, title: "Friday the 13th", year: 2009 },
+        { id: 9725, title: "Friday the 13th Part 2", year: 1981 },
+        { id: 9728, title: "Friday the 13th Part III", year: 1982 },
+        { id: 9730, title: "Friday the 13th: The Final Chapter", year: 1984 },
+        { id: 9731, title: "Friday the 13th: A New Beginning", year: 1985 },
+        { id: 10225, title: "Friday the 13th Part VI: Jason Lives", year: 1986 },
+        { id: 10281, title: "Friday the 13th Part VII: The New Blood", year: 1988 },
+        { id: 6466, title: "Freddy vs. Jason", year: 2003 },
+        { id: 9552, title: "The Exorcist", year: 1973 },      // Need to verify
+        { id: 138843, title: "The Conjuring", year: 2013 },  // Need to verify
+        { id: 419704, title: "Hereditary", year: 2018 },      // Need to verify
+        { id: 8643, title: "The Exorcism of Emily Rose", year: 2005 }, 
+        { id: 48171, title: "The Rite", year: 2011 },
+        { id: 1038392, title: "The Conjuring: Last Rites", year: 2025 },
+        { id: 38358, title: "The Last Exorcism", year: 2010 },
+        { id: 146203, title: "The Last Exorcism Part II", year: 2013 },
+        { id: 77883, title: "The Possession", year: 2012 },
+        { id: 49018, title: "Insidious", year: 2011 },
+        { id: 91586, title: "Insidious: Chapter 2", year: 2013 },
+        { id: 406563, title: "Insidious: The Last Key", year: 2018 },
+        { id: 614479, title: "Insidious: The Red Door", year: 2023 },
+        { id: 259693, title: "The Conjuring 2", year: 2016 },
+        { id: 423108, title: "The Conjuring: The Devil Made Me Do It", year: 2021 },
+        { id: 250546, title: "Annabelle", year: 2014 },
+        { id: 396422, title: "Annabelle: Creation", year: 2017 },
+        { id: 521029, title: "Annabelle Comes Home", year: 2019 },
+        { id: 150202, title: "The Haunting in Connecticut", year: 2009 },
+        { id: 806, title: "The Omen", year: 2006 },
+        { id: 242512, title: "Ouija", year: 2014 },
+        { id: 335796, title: "Ouija: Origin of Evil", year: 2016 },
+        { id: 297608, title: "The Taking of Deborah Logan", year: 2014 },
+        { id: 82507, title: "Sinister", year: 2012 },
+        { id: 283445, title: "Sinister 2", year: 2015 },
+        { id: 280092, title: "Insidious: Chapter 3", year: 2015 },
+        { id: 11449, title: "The Amityville Horror", year: 1979 },
+        { id: 10065, title: "The Amityville Horror", year: 2005 },
+        { id: 1970, title: "The Grudge", year: 2004 },
+        { id: 1975, title: "The Grudge 2", year: 2006 },
+        { id: 1977, title: "The Grudge 3", year: 2009 },
+        { id: 565, title: "The Ring", year: 2002 },
+        { id: 9059, title: "Tales from the Crypt: Demon Knight", year: 1995 },
+        { id: 627462, title: "Tales from the Crypt: Volume 2", year: 1992 },
+        { id: 585282, title: "Tales from the Crypt: Volume 3", year: 1990 },
+        { id: 439079, title: "The Nun", year: 2018 },
+        { id: 11380, title: "Bones", year: 2001 },
+        { id: 745, title: "The Sixth Sense", year: 1999 },   // Need to verify
+        { id: 565, title: "The Ring", year: 2002 },          // Need to verify
+        { id: 1085, title: "Poltergeist", year: 1982 },       // Need to verify
+        { id: 9913, title: "The Skeleton Key", year: 2005 },
+        { id: 694, title: "The Shining", year: 1980 },
+        { id: 609, title: "Poltergeist", year: 1982 },
+        { id: 745, title: "The Sixth Sense", year: 1999 },
+        { id: 23827, title: "Paranormal Activity", year: 2007 },
+        { id: 41436, title: "Paranormal Activity 2", year: 2010 },
+        { id: 41437, title: "Paranormal Activity 3", year: 2011 },
+        { id: 82990, title: "Paranormal Activity 4", year: 2012 },
+        { id: 146301, title: "Paranormal Activity: The Ghost Dimension", year: 2015},
+        { id: 227348, title: "Paranormal Activity: The Marked Ones", year: 2014},
+        { id: 11449, title: "The Amityville Horror", year: 1979 },
+        { id: 10065, title: "The Amityville Horror", year: 2005 },
+        { id: 8913, title: "Pet Sematary", year: 1989 },
+        { id: 157433, title: "Pet Sematary", year: 2019 },
+        { id: 9030, title: "The Eye", year: 2008 },
+        { id: 348, title: "Alien", year: 1979 },             // Need to verify
+        { id: 1091, title: "The Thing", year: 1982 },        // Need to verify
+        { id: 106, title: "Predator", year: 1987 },          // Need to verify
+        { id: 19614, title: "IT", year: 1990}, 
+        { id: 346364, title: "IT", year: 2017 },
+        { id: 474350, title: "IT Chapter Two", year: 2019 },
+        { id: 9792, title: "The Hills Have Eyes", year: 2006 },
+        { id: 242224, title: "The Babadook", year: 2014 },
+        { id: 5876, title: "The Mist", year: 2007 },
+        { id: 2756, title: "The Abyss", year: 1989 },
+        { id: 9902, title: "Wrong Turn", year: 2003 },
+        { id: 9360, title: "Anaconda", year: 1997},
+        { id: 913290, title: "Barbarian", year: 2022 },
+        { id: 170, title: "28 Days Later", year: 2002 },    
+        { id: 396535, title: "Train to Busan", year: 2016 },
+        { id: 10331, title: "Night of the Living Dead", year: 1968 },
+        { id: 924, title: "Dawn of the Dead", year: 2004 },
+        { id: 923, title: "Dawn of the Dead", year: 1978 },
+        { id: 1100988, title: "28 Years Later", year: 2025 },
+        { id: 375366, title: "The Girl with All the Gifts", year: 2016 },
+        { id: 72190, title: "World War Z", year: 2013 },
+        { id: 19908, title: "Zombieland", year: 2009 },
+        { id: 338967, title: "Zombieland: Double Tap", year: 2019 },
+        { id: 176, title: "Saw", year: 2004 },             
+        { id: 1690, title: "Hostel", year: 2006 },
+        { id: 9373, title: "The Texas Chainsaw Massacre", year: 2004 },
+        { id: 10781, title: "The Texas Chainsaw Massacre: THer Beginning", year: 2006 },
+        { id: 28429, title: "The Texas Chainsaw Massacre: A Family Portrait", year: 1988 },
+        { id: 10066, title: "House of Wax", year: 2005 },
+        { id: 103620, title: "Maniac", year: 2012 },
+        { id: 2251, title: "Ichi the Killer", year: 2001 },
+        { id: 12491, title: "High Tension", year: 2003 },
+        { id: 663712, title: "Terrifier 2", year: 2022 },
+        { id: 16921, title: "Autopsy", year: 2008 },
+        { id: 604079, title: "The Long Walk", year: 2025 },
+        { id: 19994, title: "Jennifer's Body", year: 2009 },
+        { id: 14836, title: "Coraline", year: 2009 },        // Need to verify
+        { id: 9479, title: "The Nightmare Before Christmas", year: 1993 }, // Need to verify
+        { id: 21481, title: "Twitches", year: 2005 },
+        { id: 46169, title: "Twitches Too", year: 2007 },
+        { id: 10439, title: "Hocus Pocus", year: 1993 },
+        { id: 642885, title: "Hocus Pocus 2", year: 2022 },
+        { id: 8839, title: "Casper", year: 1995 }, 
+        { id: 70772, title: "Don't Look Under the Bed", year: 1999 },
+        { id: 62214, title: "Frankenweenie", year: 2012 },
+        { id: 927, title: "Gremlins", year: 1984 },
+        { id: 928, title: "Gremlins 2: The New Batch", year: 1990 },
+        { id: 3933, title: "Corpse Bride", year: 2005 },
+        { id: 4011, title: "Beetlejuice", year: 1988 },
+        { id: 9297, title: "Monster House", year: 2006 },
+        { id: 27850, title: "Halloweentown", year: 1998 },
+        { id: 34205, title: "Halloweentown II: Kalabar's Revenge", year: 2001 },
+        { id: 34560, title: "Halloweentown High", year: 2004 },
+        { id: 34204, title: "Return to Halloweentown", year: 2006 },
+        { id: 2907, title: "The Addams Family", year: 1991 },
+        { id: 2758, title: "Addams Family Values", year: 1993 },
+        { id: 24100, title: "The Little Vampire", year: 2000 },
+        { id: 10756, title: "The Haunted Mansion", year: 2003 },
+        { id: 162, title: "Edward Scissorhands", year: 1990 },
+        { id: 671, title: "Harry Potter and the Philosopher's Stone", year: 2001 },
+        { id: 672, title: "Harry Potter and the Chamber of Secrets", year: 2002 },
+        { id: 673, title: "Harry Potter and the Prisoner of Azkaban", year: 2004 },
+        { id: 674, title: "Harry Potter and the Goblet of Fire", year: 2005 },
+        { id: 675, title: "Harry Potter and the Order of the Phoenix", year: 2007 },
+        { id: 767, title: "Harry Potter and the Half-Blood Prince", year: 2009 },
+        { id: 12444, title: "Harry Potter and the Deathly Hallows: Part 1", year: 2010 },
+        { id: 12445, title: "Harry Potter and the Deathly Hallows: Part 2", year: 2011 },
+        { id: 628, title: "Interview with the Vampire", year: 1994 },
+        { id: 1547, title: "The Lost Boys", year: 1987 },
+        { id: 36647, title: "Blade", year: 1998 },
+        { id: 1233413, title: "Sinners", year: 2025},
+        { id: 30566, title: "Blacula", year: 1972 },
+        { id: 12158, title: "Vampire in Brooklyn", year: 1995 },
+        { id: 4513, title: "30 Days of Night", year: 2007 },
+        { id: 42941, title: "30 Days of Night: Dark Days", year: 2010 },
+        { id: 19901, title: "Daybreakers", year: 2010 },
+        { id: 41402, title: "Let Me In", year: 2010 },
+        { id: 36586, title: "Brade II", year: 2002 },
+        { id: 277, title: "Underworld", year: 2003 },
+        { id: 834, title: "Underworld: Evolution", year: 2006 },
+        { id: 12437, title: "Underworld: Rise of the Lycans", year: 2009 },
+        { id: 52520, title: "Underworld: Awakening", year: 2012 },
+        { id: 346672, title: "Underworld: Blood Wars", year: 2016 },
+        { id: 274, title: "The Silence of the Lambs", year: 1991 },
+        { id: 11252, title: "Psycho", year: 1998 },             // Need to verify
+        { id: 2291, title: "Jacob's Ladder", year: 1990 },
+        { id: 456529, title: "Jacob's Ladder", year: 2019 },
+        { id: 807, title: "Se7en", year: 1995 },
+        { id: 1359, title: "American Psycho", year: 2000 },
+        { id: 44214, title: "Black Swan", year: 2010 },
+        { id: 11324, title: "Shutter Island", year: 2010 },
+        { id: 4553, title: "The Machinist", year: 2004 },
+        { id: 1933, title: "The Others", year: 2001 },
+        { id: 419430, title: "Get Out", year: 2017 },
+        { id: 381288, title: "Split", year: 2016 },
+        { id: 458723, title: "US", year: 2019 },
+        { id: 530385, title: "Midsommar", year: 2019 },
+        { id: 503919, title: "The Lighthouse", year: 2019 },
+        { id: 10972, title: "Session 9", year: 2001 },
+        { id: 4552, title: "A Tale of Two Sisters", year : 2003 },
+        { id: 1954, title: "The Butterfly Effect", year: 2004 },
+        { id: 4970, title: "Gothika", year: 2003 },
+        { id: 814800, title: "Goodnight Mommy", year: 2014 },
+        { id: 399057, title: "The Kiling of a Sacred Deer", year: 2017 },
+        { id: 502416, title: "Ma", year: 2019 },
+        { id: 21208, title: "Orphan", year: 2009 },
+        { id: 747, title: "Shaun of the Dead", year: 2004 },
+        { id: 620, title: "Ghostbusters", year: 1984 },       
+        { id: 43074, title: "Ghostbusters", year: 2016 },
+        { id: 4247, title: "Scary Movie", year: 2000 },
+        { id: 4248, title: "Scary Movie 2", year: 2001 },
+        { id: 4256, title: "Scary Movie 3", year: 2003 },
+        { id: 4257, title: "Scary Movie 4", year: 2006 },
+        { id: 4258, title: "Scary Movie 5", year: 2013 }
+    ] 
 };
 
 // TMDB Genre IDs for API searches
@@ -403,21 +738,9 @@ async function pickComedyMovie() {
 
 // Function for the scare selector button
 async function scareSelector() {
-    try {
-        document.getElementById('movieDisplay').innerHTML = `<p>🎬 Selecting a scary movie for you...</p>`;
-        
-        const movie = await getRandomHorrorMovie();
-        if (movie) {
-            // Use your existing displayMovie function but with 'horror' as genre type
-            displayMovieWithStreaming(movie, 'horror', 'scare-selector');
-        } else {
-            document.getElementById('movieDisplay').innerHTML = `<p>No horror movie found. Please try again!</p>`;
-        }
-    } catch (error) {
-        console.error('Error with scare selector:', error);
-        document.getElementById('movieDisplay').innerHTML = `<p>Error loading horror movie. Please try again!</p>`;
-    }
+    await pickMovieByGenre('horror');
 }
+
 
 function showAboutMe() {
     // Hide the main content
