@@ -139,7 +139,9 @@ const customMovies = {
         { id: 9731, title: "Friday the 13th: A New Beginning", year: 1985 },
         { id: 10225, title: "Friday the 13th Part VI: Jason Lives", year: 1986 },
         { id: 10281, title: "Friday the 13th Part VII: The New Blood", year: 1988 },
-        { id: 6466, title: "Freddy vs. Jason", year: 2003 }
+        { id: 6466, title: "Freddy vs. Jason", year: 2003 },
+        { id: 536554, title: "M3gan", year: 2022},
+        { id: 1071585, title: "M3gan 2.0", year: 2025}
     ],
     demonic: [
         { id: 9552, title: "The Exorcist", year: 1973 },      // Need to verify
@@ -201,10 +203,13 @@ const customMovies = {
         { id: 9030, title: "The Eye", year: 2008 },
     ],
     monster: [
-        { id: 348, title: "Alien", year: 1979 },             // Need to verify
-        { id: 1091, title: "The Thing", year: 1982 },        // Need to verify
-        { id: 106, title: "Predator", year: 1987 },          // Need to verify
-        { id: 19614, title: "IT", year: 1990}, 
+        { id: 348, title: "Alien", year: 1979 },             
+        { id: 1091, title: "The Thing", year: 1982 },        
+        { id: 106, title: "Predator", year: 1987 },          
+        { id: 439015, title: "Slender Man", year: 2018}, 
+        { id: 10489, title: "Cujo", year: 1983 },
+        { id: 9599, title: "The Blob", year: 1988 },
+        { id: 447332, title: "A Quiet Place", year: 2018 },
         { id: 346364, title: "IT", year: 2017 },
         { id: 474350, title: "IT Chapter Two", year: 2019 },
         { id: 9792, title: "The Hills Have Eyes", year: 2006 },
@@ -225,7 +230,8 @@ const customMovies = {
         { id: 375366, title: "The Girl with All the Gifts", year: 2016 },
         { id: 72190, title: "World War Z", year: 2013 },
         { id: 19908, title: "Zombieland", year: 2009 },
-        { id: 338967, title: "Zombieland: Double Tap", year: 2019 }
+        { id: 338967, title: "Zombieland: Double Tap", year: 2019 },
+        
     ],
     gore: [
         { id: 176, title: "Saw", year: 2004 },             
@@ -291,7 +297,9 @@ const customMovies = {
         { id: 834, title: "Underworld: Evolution", year: 2006 },
         { id: 12437, title: "Underworld: Rise of the Lycans", year: 2009 },
         { id: 52520, title: "Underworld: Awakening", year: 2012 },
-        { id: 346672, title: "Underworld: Blood Wars", year: 2016 }
+        { id: 346672, title: "Underworld: Blood Wars", year: 2016 },
+        { id: 214629, title: "Sleepwalker", year: 1984},
+
     ],
     psychological: [
         { id: 274, title: "The Silence of the Lambs", year: 1991 },
@@ -317,6 +325,7 @@ const customMovies = {
         { id: 399057, title: "The Kiling of a Sacred Deer", year: 2017 },
         { id: 502416, title: "Ma", year: 2019 },
         { id: 21208, title: "Orphan", year: 2009 },
+        { id: 522681, title: "Escape Room", year: 2019 },
     ],
     comedy: [
         { id: 747, title: "Shaun of the Dead", year: 2004 },
@@ -327,6 +336,8 @@ const customMovies = {
         { id: 4256, title: "Scary Movie 3", year: 2003 },
         { id: 4257, title: "Scary Movie 4", year: 2006 },
         { id: 4258, title: "Scary Movie 5", year: 2013 },
+        { id: 18011, title: "Leprechaun in the Hood", year: 2000 },
+        { id: 19288, title: "Leprechaun: Back 2 tha Hood", year: 2003 },
     ],
     horror: [
         { id: 948, title: "Halloween", year: 1978 },          // VERIFIED
