@@ -680,7 +680,7 @@ async function displayMovieWithStreaming(movie, genreType, source = 'custom') {
     // Show basic movie info first
     movieDisplay.innerHTML = `
         <h2>${movie.title || movie.original_title}</h2>
-        <img class="movieDisplayImage" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title} Poster" onerror="this.src='https://via.placeholder.com/500x750?text=No+Image'">
+        <img class="movieDisplayImage" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title} Poster" onerror="this.onerror=null; this.src='./images/no-image.jpg';">
         <p><strong>Genre:</strong> ${genreType.charAt(0).toUpperCase() + genreType.slice(1)} Horror</p>
         <p><strong>Source:</strong> ${sourceText}</p>
         <p><strong>Rating:</strong> ${movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}/10</p>
