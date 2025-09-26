@@ -180,7 +180,8 @@ const customMovies = {
         { id: 627462, title: "Tales from the Crypt: Volume 2", year: 1992 },
         { id: 585282, title: "Tales from the Crypt: Volume 3", year: 1990 },
         { id: 439079, title: "The Nun", year: 2018 },
-        { id: 11380, title: "Bones", year: 2001 }
+        { id: 11380, title: "Bones", year: 2001 },
+        { id: 109429, title: "Evil Dead", year: 2013 },
     ],
     paranormal: [
         { id: 745, title: "The Sixth Sense", year: 1999 },   // Need to verify
@@ -201,6 +202,14 @@ const customMovies = {
         { id: 8913, title: "Pet Sematary", year: 1989 },
         { id: 157433, title: "Pet Sematary", year: 2019 },
         { id: 9030, title: "The Eye", year: 2008 },
+        { id: 1008042, title: "Talk to Me", year: 2023 },
+        { id: 1078605, title: "Weapons", year: 2025 },
+        { id: 1151031, title: "Bring Her Back", year: 2025 },
+        { id: 1124620, title: "The Monkey", year: 2024 },
+        { id: 1197137, title: "Black Phone 2", year: 2025 },
+        { id: 480414, title: "The Curse of La Llorona", year: 2019 },
+        { id: 82507, title: "Sinister", year: 2012 },
+        { id: 1226578, title: "Longlegs", year: 2024 },
     ],
     monster: [
         { id: 348, title: "Alien", year: 1979 },             
@@ -218,7 +227,13 @@ const customMovies = {
         { id: 2756, title: "The Abyss", year: 1989 },
         { id: 9902, title: "Wrong Turn", year: 2003 },
         { id: 9360, title: "Anaconda", year: 1997},
-        { id: 913290, title: "Barbarian", year: 2022 }
+        { id: 913290, title: "Barbarian", year: 2022 },
+        { id: 439015, title: "Slender Man", year: 2018},
+        { id: 762505, title: "Nope", year: 2022 },
+        { id: 945961, title: "Alien: Romulus", year: 2024 },
+        { id: 7191, title: "Cloverfield", year: 2008 },
+        { id: 814, title: "An American Werewolf in London", year: 1981 },
+
     ],
     zombie: [
         { id: 170, title: "28 Days Later", year: 2002 },    
@@ -231,6 +246,7 @@ const customMovies = {
         { id: 72190, title: "World War Z", year: 2013 },
         { id: 19908, title: "Zombieland", year: 2009 },
         { id: 338967, title: "Zombieland: Double Tap", year: 2019 },
+        { id: 72190, title: "World War Z", year: 2013 },
         
     ],
     gore: [
@@ -246,7 +262,14 @@ const customMovies = {
         { id: 663712, title: "Terrifier 2", year: 2022 },
         { id: 16921, title: "Autopsy", year: 2008 },
         { id: 604079, title: "The Long Walk", year: 2025 },
-        { id: 19994, title: "Jennifer's Body", year: 2009 }
+        { id: 19994, title: "Jennifer's Body", year: 2009 },
+        { id: 109428, title: "Evil Dead", year: 2013 },
+        { id: 9003, title: "Hellraiser", year: 1987 },
+        { id: 9532, title: "Final Destination", year: 2000 },
+        { id: 9358, title: "Final Destination 2", year: 2003 },
+        { id: 9286, title: "Final Destination 3", year: 2006 },
+        { id: 19912, title: "The Final Destination", year: 2009 },
+        { id: 55779, title: "Final Destination 5", year: 2011 },
     ],
     kids: [
         { id: 14836, title: "Coraline", year: 2009 },        // Need to verify
@@ -279,7 +302,12 @@ const customMovies = {
         { id: 675, title: "Harry Potter and the Order of the Phoenix", year: 2007 },
         { id: 767, title: "Harry Potter and the Half-Blood Prince", year: 2009 },
         { id: 12444, title: "Harry Potter and the Deathly Hallows: Part 1", year: 2010 },
-        { id: 12445, title: "Harry Potter and the Deathly Hallows: Part 2", year: 2011 }
+        { id: 12445, title: "Harry Potter and the Deathly Hallows: Part 2", year: 2011 },
+        { id: 24100, title: "The Little Vampire", year: 2000 },
+        { id: 76212, title: "Under Wraps", year: 1997 },
+        { id: 92208, title: "Mom's Got a Date with a Vampire", year: 2000 },
+        { id: 26450, title: "Phantom Of the Megaplex", year: 2000 },
+        { id: 601, title: "E.T. the Extra-Terrestrial", year: 1982 },
     ],
     vampire: [
         { id: 628, title: "Interview with the Vampire", year: 1994 },
@@ -299,6 +327,7 @@ const customMovies = {
         { id: 52520, title: "Underworld: Awakening", year: 2012 },
         { id: 346672, title: "Underworld: Blood Wars", year: 2016 },
         { id: 214629, title: "Sleepwalker", year: 1984},
+        { id: 11979, title: "Queen of the Damned", year: 2002 },
 
     ],
     psychological: [
@@ -326,6 +355,7 @@ const customMovies = {
         { id: 502416, title: "Ma", year: 2019 },
         { id: 21208, title: "Orphan", year: 2009 },
         { id: 522681, title: "Escape Room", year: 2019 },
+        { id: 762505, title: "Nope", year: 2022 },
     ],
     comedy: [
         { id: 747, title: "Shaun of the Dead", year: 2004 },
@@ -338,6 +368,9 @@ const customMovies = {
         { id: 4258, title: "Scary Movie 5", year: 2013 },
         { id: 18011, title: "Leprechaun in the Hood", year: 2000 },
         { id: 19288, title: "Leprechaun: Back 2 tha Hood", year: 2003 },
+        { id: 19908, title: "Zombieland", year: 2009 },
+        { id: 139038, title: "A Haunted House", year: 2013 },
+        { id: 184345, title: "A Haunted House 2", year: 2014 },
     ],
     horror: [
         { id: 948, title: "Halloween", year: 1978 },          // VERIFIED
