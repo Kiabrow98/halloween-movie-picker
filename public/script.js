@@ -13,8 +13,7 @@ window.onload = function() {
         "This site is for educational and entertainment purposes only. \n" +
         "Thanks for using the Halloween Movie Picker! I'm actively adding movies and new features, and you may sometimes encounter incorrect listings (a movie showing the wrong title or thumbnail). \n" +
         "I apologize for any confusion — please use the feedback button to tell me what went wrong (include the genre, the wrong listing, and what you expected). That helps me fix it faster. \n" +
-        "Versioning: Because I'll be continuously deploying new features and movie lists, \n" +
-        "I'll share/post a new site link after each major update so you can access the most up-to-date version. \n" +
+        "Versioning: Because I'll be continuously deploying new features and movie lists, I'll share/post a new site link after each major update so you can access the most up-to-date version. \n" +
         "Follow the link or check the Releases/Updates section to get the latest build. \n" +
         "Thanks for reporting bugs and helping improve the app!"
   );
@@ -156,6 +155,64 @@ const customMovies = {
         { id: 1071585, title: "M3gan 2.0", year: 2025}
     ],
     tvseries: [
+        { id: 66732, title: "Stranger Things", year: 2016 },
+        { id: 5835, title: "Goosebumps", year: 1995 },
+        { id: 1413, title: "American Horror Story", year: 2011 },
+        { id: 72844, title: "The Haunting of Hill House", year: 2018 },
+        { id: 82816, title: "Lovecraft Country", year: 2020 }, 
+        { id: 120462, title: "Them", year: 2021 },
+        { id: 10545, title: "True Blood", year: 2008 },
+        { id: 46786, title: "Bates Motel", year: 2013 },
+        { id: 1402, title: "The Walking Dead", year: 2010 },
+        { id: 100088, title: "The Last of Us", year: 2023 },
+        { id: 75775, title: "Junji Ito Collection", year: 2018},
+        { id: 79242, title: "Chilling Adventures of Sabrina", year: 2018 },
+        { id: 124364, title: "FROM", year: 2022 },
+        { id: 17937, title: "Ghost Adventures", year: 2008 },
+        { id: 62046, title: "Scream Queens", year: 2015 },
+        { id: 34524, title: "Teen Wolf", year: 2011 },
+        { id: 95, title: "Buffy the Vampire Slayer", year: 1997 },
+        { id: 80213, title: "The Purge", year: 2018 },
+        { id: 18165, title: "The Vampire Diaries", year: 2009 },
+        { id: 252284, title: "The Red King", year: 2024 },
+        { id: 128098, title: "Interview with the Vampire", year: 2022 },
+        { id: 157239, title: "Alien: Earth", year: 2025 },
+        { id: 97400, title: "Midnight Mass", year: 2021 },
+        { id: 86848, title: "Evil", year: 2019 },
+        { id: 4602, title: "Thats So Raven: Don't Have A Cow", year: 2003 },
+        { id: 4575, title: "Lizzie McGuire: Night of The Day of the Dead", year: 2001 },
+        { id: 543, title: "The Proud Family: A Hero for Hallowwen", year: 2002 },
+        { id: 3200, title: "Even Stevens: A Very Scary Story", year: 2001 },
+        { id: 4605, title: "The Suite Life of Zack & Cody: Ghost of 613", year: 2005 },
+    
+    ],  
+    paranormal: [
+        { id: 745, title: "The Sixth Sense", year: 1999 },   // Need to verify
+        { id: 565, title: "The Ring", year: 2002 },          // Need to verify
+        { id: 1085, title: "Poltergeist", year: 1982 },       // Need to verify
+        { id: 9913, title: "The Skeleton Key", year: 2005 },
+        { id: 694, title: "The Shining", year: 1980 },
+        { id: 609, title: "Poltergeist", year: 1982 },
+        { id: 745, title: "The Sixth Sense", year: 1999 },
+        { id: 23827, title: "Paranormal Activity", year: 2007 },
+        { id: 41436, title: "Paranormal Activity 2", year: 2010 },
+        { id: 41437, title: "Paranormal Activity 3", year: 2011 },
+        { id: 82990, title: "Paranormal Activity 4", year: 2012 },
+        { id: 146301, title: "Paranormal Activity: The Ghost Dimension", year: 2015},
+        { id: 227348, title: "Paranormal Activity: The Marked Ones", year: 2014},
+        { id: 11449, title: "The Amityville Horror", year: 1979 },
+        { id: 10065, title: "The Amityville Horror", year: 2005 },
+        { id: 8913, title: "Pet Sematary", year: 1989 },
+        { id: 157433, title: "Pet Sematary", year: 2019 },
+        { id: 9030, title: "The Eye", year: 2008 },
+        { id: 1008042, title: "Talk to Me", year: 2023 },
+        { id: 1078605, title: "Weapons", year: 2025 },
+        { id: 1151031, title: "Bring Her Back", year: 2025 },
+        { id: 1124620, title: "The Monkey", year: 2024 },
+        { id: 1197137, title: "Black Phone 2", year: 2025 },
+        { id: 480414, title: "The Curse of La Llorona", year: 2019 },
+        { id: 82507, title: "Sinister", year: 2012 },
+        { id: 1226578, title: "Longlegs", year: 2024 },
         { id: 9552, title: "The Exorcist", year: 1973 },      // Need to verify
         { id: 138843, title: "The Conjuring", year: 2013 },  // Need to verify
         { id: 419704, title: "Hereditary", year: 2018 },      // Need to verify
@@ -195,34 +252,6 @@ const customMovies = {
         { id: 11380, title: "Bones", year: 2001 },
         { id: 109429, title: "Evil Dead", year: 2013 },
     ],
-    paranormal: [
-        { id: 745, title: "The Sixth Sense", year: 1999 },   // Need to verify
-        { id: 565, title: "The Ring", year: 2002 },          // Need to verify
-        { id: 1085, title: "Poltergeist", year: 1982 },       // Need to verify
-        { id: 9913, title: "The Skeleton Key", year: 2005 },
-        { id: 694, title: "The Shining", year: 1980 },
-        { id: 609, title: "Poltergeist", year: 1982 },
-        { id: 745, title: "The Sixth Sense", year: 1999 },
-        { id: 23827, title: "Paranormal Activity", year: 2007 },
-        { id: 41436, title: "Paranormal Activity 2", year: 2010 },
-        { id: 41437, title: "Paranormal Activity 3", year: 2011 },
-        { id: 82990, title: "Paranormal Activity 4", year: 2012 },
-        { id: 146301, title: "Paranormal Activity: The Ghost Dimension", year: 2015},
-        { id: 227348, title: "Paranormal Activity: The Marked Ones", year: 2014},
-        { id: 11449, title: "The Amityville Horror", year: 1979 },
-        { id: 10065, title: "The Amityville Horror", year: 2005 },
-        { id: 8913, title: "Pet Sematary", year: 1989 },
-        { id: 157433, title: "Pet Sematary", year: 2019 },
-        { id: 9030, title: "The Eye", year: 2008 },
-        { id: 1008042, title: "Talk to Me", year: 2023 },
-        { id: 1078605, title: "Weapons", year: 2025 },
-        { id: 1151031, title: "Bring Her Back", year: 2025 },
-        { id: 1124620, title: "The Monkey", year: 2024 },
-        { id: 1197137, title: "Black Phone 2", year: 2025 },
-        { id: 480414, title: "The Curse of La Llorona", year: 2019 },
-        { id: 82507, title: "Sinister", year: 2012 },
-        { id: 1226578, title: "Longlegs", year: 2024 },
-    ],
     monster: [
         { id: 348, title: "Alien", year: 1979 },             
         { id: 1091, title: "The Thing", year: 1982 },        
@@ -247,7 +276,7 @@ const customMovies = {
         { id: 814, title: "An American Werewolf in London", year: 1981 },
 
     ],
-    virus: [
+    zombieVirus: [
         { id: 170, title: "28 Days Later", year: 2002 },    
         { id: 396535, title: "Train to Busan", year: 2016 },
         { id: 10331, title: "Night of the Living Dead", year: 1968 },
@@ -259,6 +288,17 @@ const customMovies = {
         { id: 19908, title: "Zombieland", year: 2009 },
         { id: 338967, title: "Zombieland: Double Tap", year: 2019 },
         { id: 72190, title: "World War Z", year: 2013 },
+        { id: 1118031, title: "Apocalypse Z: The Beginning of the End", year: 2024 },
+        { id: 6479, title: "I Am Legend", year: 2007 },
+        { id: 460458, title: "Resident Evil: Welcome to Racoon City", year: 2021 },
+        { id: 294254, title: "Maze Runner: The Scorch Trails", year: 2015 },
+        { id: 39538, title: "Contagion", year: 2011 },
+        { id: 157424, title: "Cabin Fever: Patient Zero", year: 2014 },
+        { id: 29427, title: "The Crazies", year: 2010 },
+        { id: 28739, title: "Cabin Fever 2: Spring Fever", year: 2009 },
+        { id: 11547, title: "Cabin Fever", year: 2003 },
+
+
         
     ],
     gore: [
@@ -320,6 +360,7 @@ const customMovies = {
         { id: 92208, title: "Mom's Got a Date with a Vampire", year: 2000 },
         { id: 26450, title: "Phantom Of the Megaplex", year: 2000 },
         { id: 601, title: "E.T. the Extra-Terrestrial", year: 1982 },
+        { id: 354912, title: "COCO", year: 2017 }
     ],
     vampire: [
         { id: 628, title: "Interview with the Vampire", year: 1994 },
@@ -604,7 +645,7 @@ const tmdbGenres = {
     tvseries: 27,
     paranormal: 27,
     monster: 27,
-    virus: 27,
+    zombieVirus: 27,
     gore: 27,
     kids: [27, 10751],
     vampire: 27,
@@ -618,7 +659,7 @@ const genreKeywords = {
     tvseries: ['tv', 'series', 'horror', 'supernatural'],
     paranormal: ['ghost', 'haunted', 'spirit', 'supernatural'],
     monster: ['monster', 'creature', 'alien', 'beast'],
-    virus: ['zombie', 'undead', 'apocalypse'],
+    zombieVirus: ['zombie', 'undead', 'apocalypse'],
     gore: ['blood', 'torture', 'brutal', 'violent'],
     kids: ['family', 'children', 'adventure'],
     vampire: ['vampire', 'blood', 'bite'],
@@ -768,8 +809,8 @@ async function pickMonsterMovie() {
     await pickMovieByGenre('monster');
 }
 
-async function pickVirusMovie() {
-    await pickMovieByGenre('virus');
+async function pickzomieVirusMovie() {
+    await pickMovieByGenre('zombieVirus');
 }
 
 async function pickGoreMovie() {
@@ -823,35 +864,4 @@ function showHomePage() {
     
     // Clear any movie displays that might have back buttons
     document.getElementById('movieDisplay').innerHTML = '';
-}
-function showGenreInfo() {
-    console.log("showGenreInfo started");
-    
-    // Hide main content
-    document.querySelector('main').style.display = 'none';
-    document.querySelector('.flexbox-heading').style.display = 'none';
-    document.querySelector('.pick-genre').style.display = 'none';
-    
-    // Hide other sections
-    document.getElementById('aboutMeSection').style.display = 'none';
-    document.getElementById('ratingSection').style.display = 'none';
-    
-    // Show genre info section
-    document.getElementById('genreInfoSection').style.display = 'block';
-}
-
-function showRatingSection() {
-    console.log("showRatingSection started");
-    
-    // Hide main content
-    document.querySelector('main').style.display = 'none';
-    document.querySelector('.flexbox-heading').style.display = 'none';
-    document.querySelector('.pick-genre').style.display = 'none';
-    
-    // Hide other sections
-    document.getElementById('aboutMeSection').style.display = 'none';
-    document.getElementById('genreInfoSection').style.display = 'none';
-    
-    // Show rating section
-    document.getElementById('ratingSection').style.display = 'block';
 }

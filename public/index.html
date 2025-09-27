@@ -20,9 +20,7 @@
 
 <!--This is the flexbox-->
 <div class="flexbox-heading">
-<div class="first-section" onclick="showGenreInfo()">Genre Guide</div>
 <div class="second-section" onclick="showAboutMe()">About Me</div>
-<div class="third-section" onclick="showRatingSection()">Rate & Review</div>
 </div>
 <!--This is the pick your genre header-->
 <p class="pick-genre">Pick Your Genre</p>
@@ -62,11 +60,11 @@
     </div>
    </div>
 <!--this is the grid layout for genre 5-->
-     <div class="genre-card" onclick="pickVirusMovie()">
+     <div class="genre-card" onclick="pickzombieVirusMovie()">
       <div class="genre-wrapper">
         <img class="genre-images" 
           src="/images/pexels-cottonbro-5435454.jpg" alt="Zombies in front of a car">
-          <div class="genre-overlay">Virus</div>
+          <div class="genre-overlay">Zombie/Virus</div>
     </div>
    </div>
 <!--this is the grid layout for genre 6-->
@@ -155,68 +153,5 @@ I hope you enjoy exploring it, and if you have any suggestions, feel free to rea
         </div>
     </div>
 
-
-<!--Genre Info-->
-    <div id="genreInfoSection" style="display: none;">
-      <h1>Genre Guide</h1>
-      <div class="flexbox-heading">
-        <div class="second-section" onclick="location.href='index.html'">Home</div>
-      </div>
-      <div class="genreinfo-container">
-        <!-- Genre descriptions -->
-
-        <!--Slasher-->
-        <h2>Slasher</h2>
-        <p>A subgenre of horror involving a killer murdering a group of people, usually by use of bladed tools.</p>
-        <!--TV Series-->
-        <h2>TV Series</h2>
-        <p>Films that involve demonic entities, possession, and exorcism.</p>
-       <!--Paranormal-->
-        <h2>Paranormal</h2>
-        <p>Films that involve ghosts, spirits, and other supernatural phenomena.</p>
-       <!--Monster-->
-        <h2>Monster</h2>
-        <p>Films that feature monsters, creatures, or other non-human antagonists</p>
-        <!--Virus-->
-        <h2>Virus</h2>
-        <p>Films that involve viral outbreaks, zombies, and apocalyptic scenarios.</p>
-       <!--Gore-->
-        <h2>Gore</h2>
-        <p>Films that focus on graphic violence and explicit depictions of blood and injury.</p>
-       <!--Kids-->
-        <h2>Kids</h2>
-        <p>Family-friendly horror films that are suitable for children.</p>
-       <!--Vampire-->
-        <h2>Vampire</h2>
-        <p>Films that feature vampires as central characters or antagonists.</p>
-       <!--Psychological-->
-        <h2>Psychological</h2>
-        <p>Films that focus on the mental, emotional, and psychological states of characters to create horror.</p>
-       <!--Comedy-->
-        <h2>Comedy</h2>
-        <p>Horror films that incorporate humor and satire to create a comedic effect.</p>
-      </div>
-    </div>
-
-
-    <!--Disclaimer-->
-    <div id="ratingSection" style="display: none;">
-      <h1>Disclaimer</h1>
-      <div class="flexbox-heading">
-        <div class="second-section" onclick="location.href='index.html'">Home</div>
-      </div>
-    <div class="disclaimer">
-      <p>Disclaimer & Release Notes: Movie data is sourced from The Movie Database (TMDb) API.
-         All movie titles, images, and descriptions are the property of their respective owners. 
-         This site is for educational and entertainment purposes only.<br>
-         Thanks for using the Halloween Movie Picker! I'm actively adding movies and new features,
-         and you may sometimes encounter incorrect listings (a movie showing the wrong title or thumbnail). 
-         I apologize for any confusion — please use the feedback button to tell me what went wrong (include the genre, the wrong listing, and what you expected). 
-         That helps me fix it faster. Versioning: Because I'll be continuously deploying new features and movie lists, 
-         I'll share/post a new site link after each major update so you can access the most up-to-date version. 
-         Follow the link or check the Releases/Updates section to get the latest build. Thanks for reporting bugs and helping improve the app!
-        </p>
-    </div>
-    </div>
     </body>
 </html>
