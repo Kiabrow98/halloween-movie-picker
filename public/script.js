@@ -825,30 +825,33 @@ function showHomePage() {
     document.getElementById('movieDisplay').innerHTML = '';
 }
 function showGenreInfo() {
-    // Hide the main content
+    console.log("showGenreInfo started");
+    
+    // Hide main content
     document.querySelector('main').style.display = 'none';
     document.querySelector('.flexbox-heading').style.display = 'none';
     document.querySelector('.pick-genre').style.display = 'none';
     
-    // Hide any existing back buttons from the main page
-    const existingBackButtons = document.querySelectorAll('.back-button');
-    existingBackButtons.forEach(btn => btn.style.display = 'none');
+    // Hide other sections
+    document.getElementById('aboutMeSection').style.display = 'none';
+    document.getElementById('ratingSection').style.display = 'none';
     
-    // Show about me section
+    // Show genre info section
     document.getElementById('genreInfoSection').style.display = 'block';
 }
+
 function showRatingSection() {
-    // Hide the main content
+    console.log("showRatingSection started");
+    
+    // Hide main content
     document.querySelector('main').style.display = 'none';
     document.querySelector('.flexbox-heading').style.display = 'none';
     document.querySelector('.pick-genre').style.display = 'none';
     
-    // Hide any existing back buttons from the main page
-    const existingBackButtons = document.querySelectorAll('.back-button');
-    existingBackButtons.forEach(btn => btn.style.display = 'none');
+    // Hide other sections
+    document.getElementById('aboutMeSection').style.display = 'none';
+    document.getElementById('genreInfoSection').style.display = 'none';
     
-    // Show about me section
+    // Show rating section
     document.getElementById('ratingSection').style.display = 'block';
 }
-console.log(document.getElementById('genreInfoSection'));
-console.log(document.getElementById('ratingSection'));
