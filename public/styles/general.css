@@ -22,3 +22,12 @@ body {
     box-shadow: 5px 5px 15px rgb(127, 127, 127);
 }
 
+#genreInfoSection {
+    background-color: red;
+    min-height: 500px;
+}
+
+#ratingSection {
+    background-color: blue;
+    min-height: 500px;
+}

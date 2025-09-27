@@ -7,7 +7,19 @@ window.onload = function() {
     "3. Enjoy your spooky movie night!\n\n" +
     "More movies and features will be added over time. Happy Halloween! 🦇"
   );
+  alert(
+        "Disclaimer & Release Notes: Movie data is sourced from The Movie Database (TMDb) API. \n" +
+        "All movie titles, images, and descriptions are the property of their respective owners.  \n" +
+        "This site is for educational and entertainment purposes only. \n" +
+        "Thanks for using the Halloween Movie Picker! I'm actively adding movies and new features, and you may sometimes encounter incorrect listings (a movie showing the wrong title or thumbnail). \n" +
+        "I apologize for any confusion — please use the feedback button to tell me what went wrong (include the genre, the wrong listing, and what you expected). That helps me fix it faster. \n" +
+        "Versioning: Because I'll be continuously deploying new features and movie lists, \n" +
+        "I'll share/post a new site link after each major update so you can access the most up-to-date version. \n" +
+        "Follow the link or check the Releases/Updates section to get the latest build. \n" +
+        "Thanks for reporting bugs and helping improve the app!"
+  );
 };
+
 
 async function getMovieDetails(movieId) {
     try {
@@ -838,3 +850,5 @@ function showRatingSection() {
     // Show about me section
     document.getElementById('ratingSection').style.display = 'block';
 }
+console.log(document.getElementById('genreInfoSection'));
+console.log(document.getElementById('ratingSection'));
