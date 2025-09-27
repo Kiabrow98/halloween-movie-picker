@@ -642,7 +642,7 @@ const customMovies = {
 // TMDB Genre IDs for API searches
 const tmdbGenres = {
     slasher: 27,
-    tvSeries: 27,
+    tvSeries: [27, 10765],
     paranormal: 27,
     monster: 27,
     zombieVirus: 27,
