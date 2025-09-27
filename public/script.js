@@ -154,7 +154,7 @@ const customMovies = {
         { id: 536554, title: "M3gan", year: 2022},
         { id: 1071585, title: "M3gan 2.0", year: 2025}
     ],
-    tvseries: [
+    tvSeries: [
         { id: 66732, title: "Stranger Things", year: 2016 },
         { id: 5835, title: "Goosebumps", year: 1995 },
         { id: 1413, title: "American Horror Story", year: 2011 },
@@ -642,7 +642,7 @@ const customMovies = {
 // TMDB Genre IDs for API searches
 const tmdbGenres = {
     slasher: 27,
-    tvseries: 27,
+    tvSeries: 27,
     paranormal: 27,
     monster: 27,
     zombieVirus: 27,
@@ -656,7 +656,7 @@ const tmdbGenres = {
 // Keywords for better API filtering
 const genreKeywords = {
     slasher: ['slasher', 'killer', 'murder', 'stalk'],
-    tvseries: ['tv', 'series', 'horror', 'supernatural'],
+    tvSeries: ['tv', 'series', 'horror', 'supernatural'],
     paranormal: ['ghost', 'haunted', 'spirit', 'supernatural'],
     monster: ['monster', 'creature', 'alien', 'beast'],
     zombieVirus: ['zombie', 'undead', 'apocalypse'],
@@ -798,7 +798,7 @@ async function pickSlasherMovie() {
 }
 
 async function pickTVSeries() {
-    await pickMovieByGenre('tvseries');
+    await pickMovieByGenre('tvSeries');
 }
 
 async function pickParanormalMovie() {
@@ -809,7 +809,7 @@ async function pickMonsterMovie() {
     await pickMovieByGenre('monster');
 }
 
-async function pickzomieVirusMovie() {
+async function pickzombieVirusMovie() {
     await pickMovieByGenre('zombieVirus');
 }
 
