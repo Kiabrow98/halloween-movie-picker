@@ -11,7 +11,7 @@
     max-width: 300px;
     flex: 1;
 }
-.second-section {
+.third-section {
     max-width: 300px;
     flex: 1;
     text-decoration: underline;
@@ -19,7 +19,7 @@
 .second-section:hover {
     color: white;
 }
-.third-section {
+.second-section {
     max-width: 300px;
     flex: 1;
     margin: 0 auto;;

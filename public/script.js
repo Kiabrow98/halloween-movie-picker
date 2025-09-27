@@ -143,7 +143,7 @@ const customMovies = {
         { id: 536554, title: "M3gan", year: 2022},
         { id: 1071585, title: "M3gan 2.0", year: 2025}
     ],
-    demonic: [
+    tvseries: [
         { id: 9552, title: "The Exorcist", year: 1973 },      // Need to verify
         { id: 138843, title: "The Conjuring", year: 2013 },  // Need to verify
         { id: 419704, title: "Hereditary", year: 2018 },      // Need to verify
@@ -229,13 +229,13 @@ const customMovies = {
         { id: 9360, title: "Anaconda", year: 1997},
         { id: 913290, title: "Barbarian", year: 2022 },
         { id: 439015, title: "Slender Man", year: 2018},
-        { id: 762505, title: "Nope", year: 2022 },
+        { id: 762505, title: "Nope", year: 2022 }, // A is for Asia//verify
         { id: 945961, title: "Alien: Romulus", year: 2024 },
         { id: 7191, title: "Cloverfield", year: 2008 },
         { id: 814, title: "An American Werewolf in London", year: 1981 },
 
     ],
-    zombie: [
+    virus: [
         { id: 170, title: "28 Days Later", year: 2002 },    
         { id: 396535, title: "Train to Busan", year: 2016 },
         { id: 10331, title: "Night of the Living Dead", year: 1968 },
@@ -257,7 +257,7 @@ const customMovies = {
         { id: 28429, title: "The Texas Chainsaw Massacre: A Family Portrait", year: 1988 },
         { id: 10066, title: "House of Wax", year: 2005 },
         { id: 103620, title: "Maniac", year: 2012 },
-        { id: 2251, title: "Ichi the Killer", year: 2001 },
+        { id: 2251, title: "Ichi the Killer", year: 2001 }, //Unfaithful//verify
         { id: 12491, title: "High Tension", year: 2003 },
         { id: 663712, title: "Terrifier 2", year: 2022 },
         { id: 16921, title: "Autopsy", year: 2008 },
@@ -589,10 +589,10 @@ const customMovies = {
 // TMDB Genre IDs for API searches
 const tmdbGenres = {
     slasher: 27,
-    demonic: 27,
+    tvseries: 27,
     paranormal: 27,
     monster: 27,
-    zombie: 27,
+    virus: 27,
     gore: 27,
     kids: [27, 10751],
     vampire: 27,
@@ -603,10 +603,10 @@ const tmdbGenres = {
 // Keywords for better API filtering
 const genreKeywords = {
     slasher: ['slasher', 'killer', 'murder', 'stalk'],
-    demonic: ['demon', 'possession', 'evil', 'supernatural'],
+    tvseries: ['tv', 'series', 'horror', 'supernatural'],
     paranormal: ['ghost', 'haunted', 'spirit', 'supernatural'],
     monster: ['monster', 'creature', 'alien', 'beast'],
-    zombie: ['zombie', 'undead', 'apocalypse'],
+    virus: ['zombie', 'undead', 'apocalypse'],
     gore: ['blood', 'torture', 'brutal', 'violent'],
     kids: ['family', 'children', 'adventure'],
     vampire: ['vampire', 'blood', 'bite'],
@@ -744,8 +744,8 @@ async function pickSlasherMovie() {
     await pickMovieByGenre('slasher');
 }
 
-async function pickDemonicMovie() {
-    await pickMovieByGenre('demonic');
+async function pickTVSeries() {
+    await pickMovieByGenre('tvseries');
 }
 
 async function pickParanormalMovie() {
@@ -756,8 +756,8 @@ async function pickMonsterMovie() {
     await pickMovieByGenre('monster');
 }
 
-async function pickZombieMovie() {
-    await pickMovieByGenre('zombie');
+async function pickVirusMovie() {
+    await pickMovieByGenre('virus');
 }
 
 async function pickGoreMovie() {
@@ -811,4 +811,30 @@ function showHomePage() {
     
     // Clear any movie displays that might have back buttons
     document.getElementById('movieDisplay').innerHTML = '';
+}
+function showGenreInfo() {
+    // Hide the main content
+    document.querySelector('main').style.display = 'none';
+    document.querySelector('.flexbox-heading').style.display = 'none';
+    document.querySelector('.pick-genre').style.display = 'none';
+    
+    // Hide any existing back buttons from the main page
+    const existingBackButtons = document.querySelectorAll('.back-button');
+    existingBackButtons.forEach(btn => btn.style.display = 'none');
+    
+    // Show about me section
+    document.getElementById('genreInfoSection').style.display = 'block';
+}
+function showRatingSection() {
+    // Hide the main content
+    document.querySelector('main').style.display = 'none';
+    document.querySelector('.flexbox-heading').style.display = 'none';
+    document.querySelector('.pick-genre').style.display = 'none';
+    
+    // Hide any existing back buttons from the main page
+    const existingBackButtons = document.querySelectorAll('.back-button');
+    existingBackButtons.forEach(btn => btn.style.display = 'none');
+    
+    // Show about me section
+    document.getElementById('ratingSection').style.display = 'block';
 }

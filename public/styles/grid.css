@@ -59,6 +59,7 @@
     border-radius: 5px;
     cursor: pointer;
     pointer-events: none;
+    font-weight: bold;
 }
 @media (max-width: 768px) {
     .pick-genre {
