@@ -860,13 +860,17 @@ function showHomePage() {
     // Clear any movie displays that might have back buttons
     document.getElementById('movieDisplay').innerHTML = '';
 }
+
 // Feedback button functions
+
+
+         document.addEventListener('DOMContentLoaded', function() {
 const WEB3FORMS_KEY = 'ac044ef8-21b8-460a-9925-c67192058b02';
 
-        let currentFeedbackType = 'enjoyed';
+            let currentFeedbackType = 'enjoyed';
 
-        // DOM Elements
-        const feedbackButton = document.getElementById('feedback-button');
+            // DOM Elements
+            const feedbackButton = document.getElementById('feedback-button');
         const overlay = document.getElementById('feedback-overlay');
         const closeButton = document.getElementById('close-button');
         const submitButton = document.getElementById('submit-button');
@@ -982,3 +986,4 @@ const WEB3FORMS_KEY = 'ac044ef8-21b8-460a-9925-c67192058b02';
             statusMessage.textContent = message;
             statusMessage.className = `status-message ${type}`;
         }
+        });
