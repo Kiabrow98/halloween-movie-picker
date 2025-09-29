@@ -137,10 +137,10 @@
             padding: 20px;
         }
 
-        /* Floating Button */
+         /* Floating Button */
         #feedback-button {
             position: fixed;
-            bottom: 24px;
+            top: 24px;
             right: 24px;
             background: linear-gradient(135deg, #ea580c, #9333ea);
             color: white;
