@@ -38,6 +38,26 @@ async function getMovieDetails(movieId) {
         return null;
     }
 }
+// tv function
+async function getTVSeriesDetails(tvId) {
+    try {
+        console.log(`Fetching TV series details for ID: ${tvId}`);
+        const response = await fetch(`/api/tv/${tvId}`);
+        
+        if (!response.ok) {
+            console.error(`API response not OK: ${response.status}`);
+            return null;
+        }
+        
+        const tvSeries = await response.json();
+        console.log(`TV series fetched:`, tvSeries.name || tvSeries.original_name, tvSeries.id);
+        return tvSeries;
+    } catch (error) {
+        console.error(`Error fetching TV series details for ID ${tvId}:`, error);
+        return null;
+    }
+}
+
 
 async function getMoviesByGenreAPI(genreType) {
     try {
@@ -667,7 +687,6 @@ const genreKeywords = {
     comedy: ['comedy', 'funny', 'humor']
 };
 
-// Main function - heavily favor custom movies to avoid API issues
 async function getMovieByGenre(genreType) {
     // 90% chance to use custom array, 10% chance for API
     const useCustom = Math.random() < 0.9;
@@ -678,16 +697,22 @@ async function getMovieByGenre(genreType) {
         
         console.log(`Trying custom movie:`, randomCustom.title, `ID: ${randomCustom.id}`);
         
-        const movieDetails = await getMovieDetails(randomCustom.id);
-        if (movieDetails) {
-            return { movie: movieDetails, source: 'custom' };
+        // Use TV endpoint for tvSeries, movie endpoint for everything else
+        const mediaDetails = genreType === 'tvSeries' 
+            ? await getTVSeriesDetails(randomCustom.id)
+            : await getMovieDetails(randomCustom.id);
+            
+        if (mediaDetails) {
+            return { movie: mediaDetails, source: 'custom' };
         } else {
-            console.log(`Custom movie failed, trying another one...`);
-            // Try a different custom movie if the first fails
+            console.log(`Custom ${genreType === 'tvSeries' ? 'TV series' : 'movie'} failed, trying another one...`);
+            // Try a different custom item if the first fails
             const anotherCustom = customMovieList[Math.floor(Math.random() * customMovieList.length)];
-            const anotherMovieDetails = await getMovieDetails(anotherCustom.id);
-            if (anotherMovieDetails) {
-                return { movie: anotherMovieDetails, source: 'custom' };
+            const anotherMediaDetails = genreType === 'tvSeries'
+                ? await getTVSeriesDetails(anotherCustom.id)
+                : await getMovieDetails(anotherCustom.id);
+            if (anotherMediaDetails) {
+                return { movie: anotherMediaDetails, source: 'custom' };
             }
         }
     }
@@ -758,38 +783,42 @@ function formatStreamingProviders(providers) {
 }
 
 // Enhanced displayMovie function with streaming info
-async function displayMovieWithStreaming(movie, genreType, source = 'custom') {
+async function displayMovieWithStreaming(media, genreType, source = 'custom') {
     const movieDisplay = document.getElementById('movieDisplay');
     const sourceText = source === 'custom' ? 'Curated Pick' : 
                       source === 'scare-selector' ? 'Scare Selector' : 'API Discovery';
     
-    // Show basic movie info first
+    // Handle both movies and TV series
+    const title = media.title || media.name || media.original_title || media.original_name;
+    const releaseDate = media.release_date || media.first_air_date || media.year;
+    
+    // Show basic info first
     movieDisplay.innerHTML = `
-        <h2>${movie.title || movie.original_title}</h2>
-        <img class="movieDisplayImage" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title} Poster" onerror="this.onerror=null; this.src='./images/no-image.jpg';">
-        <p><strong>Genre:</strong> ${genreType.charAt(0).toUpperCase() + genreType.slice(1)} Horror</p>
+        <h2>${title}</h2>
+        <img class="movieDisplayImage" src="https://image.tmdb.org/t/p/w500${media.poster_path}" alt="${title} Poster" onerror="this.onerror=null; this.src='./images/no-image.jpg';">
+        <p><strong>Genre:</strong> ${genreType.charAt(0).toUpperCase() + genreType.slice(1)} ${genreType === 'tvSeries' ? '' : 'Horror'}</p>
         <p><strong>Source:</strong> ${sourceText}</p>
-        <p><strong>Rating:</strong> ${movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}/10</p>
-        <p><strong>Release Date:</strong> ${movie.release_date || movie.year}</p>
-        <p><strong>Movie ID:</strong> ${movie.id} (for debugging)</p>
+        <p><strong>Rating:</strong> ${media.vote_average ? media.vote_average.toFixed(1) : 'N/A'}/10</p>
+        <p><strong>Release Date:</strong> ${releaseDate}</p>
+        <p><strong>Media ID:</strong> ${media.id} (for debugging)</p>
         <p><strong>Streaming:</strong> Loading...</p>
-        <p><strong>Overview:</strong><br>${movie.overview || 'A classic horror movie in the ' + genreType + ' genre.'}</p>`;
+        <p><strong>Overview:</strong><br>${media.overview || 'A classic ' + (genreType === 'tvSeries' ? 'horror TV series' : 'horror movie in the ' + genreType + ' genre.')}</p>`;
     
     // Get and add streaming info
-    const streamingInfo = await getStreamingAvailability(movie.id);
+    const streamingInfo = await getStreamingAvailability(media.id);
     const streamingHTML = formatStreamingProviders(streamingInfo);
     
     // Update the display with streaming info
     movieDisplay.innerHTML = `
-        <h2>${movie.title || movie.original_title}</h2>
-        <img class="movieDisplayImage" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title} Poster" onerror="this.src='https://via.placeholder.com/500x750?text=No+Image'">
-        <p><strong>Genre:</strong> ${genreType.charAt(0).toUpperCase() + genreType.slice(1)} Horror</p>
+        <h2>${title}</h2>
+        <img class="movieDisplayImage" src="https://image.tmdb.org/t/p/w500${media.poster_path}" alt="${title} Poster" onerror="this.src='https://via.placeholder.com/500x750?text=No+Image'">
+        <p><strong>Genre:</strong> ${genreType.charAt(0).toUpperCase() + genreType.slice(1)} ${genreType === 'tvSeries' ? '' : 'Horror'}</p>
         <p><strong>Source:</strong> ${sourceText}</p>
-        <p><strong>Rating:</strong> ${movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}/10</p>
-        <p><strong>Release Date:</strong> ${movie.release_date || movie.year}</p>
-        <p><strong>Movie ID:</strong> ${movie.id} (for debugging)</p>
+        <p><strong>Rating:</strong> ${media.vote_average ? media.vote_average.toFixed(1) : 'N/A'}/10</p>
+        <p><strong>Release Date:</strong> ${releaseDate}</p>
+        <p><strong>Media ID:</strong> ${media.id} (for debugging)</p>
         ${streamingHTML}
-        <p><strong>Overview:</strong><br>${movie.overview || 'A classic horror movie in the ' + genreType + ' genre.'}</p>`;
+        <p><strong>Overview:</strong><br>${media.overview || 'A classic ' + (genreType === 'tvSeries' ? 'horror TV series' : 'horror movie in the ' + genreType + ' genre.')}</p>`;
 }
 
 // Individual functions for each genre
