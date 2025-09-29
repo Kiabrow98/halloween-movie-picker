@@ -38,26 +38,6 @@ async function getMovieDetails(movieId) {
         return null;
     }
 }
-// tv function
-async function getTVSeriesDetails(tvId) {
-    try {
-        console.log(`Fetching TV series details for ID: ${tvId}`);
-        const response = await fetch(`/api/tv/${tvId}`);
-        
-        if (!response.ok) {
-            console.error(`API response not OK: ${response.status}`);
-            return null;
-        }
-        
-        const tvSeries = await response.json();
-        console.log(`TV series fetched:`, tvSeries.name || tvSeries.original_name, tvSeries.id);
-        return tvSeries;
-    } catch (error) {
-        console.error(`Error fetching TV series details for ID ${tvId}:`, error);
-        return null;
-    }
-}
-
 
 async function getMoviesByGenreAPI(genreType) {
     try {
@@ -174,37 +154,32 @@ const customMovies = {
         { id: 536554, title: "M3gan", year: 2022},
         { id: 1071585, title: "M3gan 2.0", year: 2025}
     ],
-    tvSeries: [
-        { id: 66732, title: "Stranger Things", year: 2016 },
-        { id: 5835, title: "Goosebumps", year: 1995 },
-        { id: 1413, title: "American Horror Story", year: 2011 },
-        { id: 72844, title: "The Haunting of Hill House", year: 2018 },
-        { id: 82816, title: "Lovecraft Country", year: 2020 }, 
-        { id: 120462, title: "Them", year: 2021 },
-        { id: 10545, title: "True Blood", year: 2008 },
-        { id: 46786, title: "Bates Motel", year: 2013 },
-        { id: 1402, title: "The Walking Dead", year: 2010 },
-        { id: 100088, title: "The Last of Us", year: 2023 },
-        { id: 75775, title: "Junji Ito Collection", year: 2018},
-        { id: 79242, title: "Chilling Adventures of Sabrina", year: 2018 },
-        { id: 124364, title: "FROM", year: 2022 },
-        { id: 17937, title: "Ghost Adventures", year: 2008 },
-        { id: 62046, title: "Scream Queens", year: 2015 },
-        { id: 34524, title: "Teen Wolf", year: 2011 },
-        { id: 95, title: "Buffy the Vampire Slayer", year: 1997 },
-        { id: 80213, title: "The Purge", year: 2018 },
-        { id: 18165, title: "The Vampire Diaries", year: 2009 },
-        { id: 252284, title: "The Red King", year: 2024 },
-        { id: 128098, title: "Interview with the Vampire", year: 2022 },
-        { id: 157239, title: "Alien: Earth", year: 2025 },
-        { id: 97400, title: "Midnight Mass", year: 2021 },
-        { id: 86848, title: "Evil", year: 2019 },
-        { id: 4602, title: "Thats So Raven: Don't Have A Cow", year: 2003 },
-        { id: 4575, title: "Lizzie McGuire: Night of The Day of the Dead", year: 2001 },
-        { id: 543, title: "The Proud Family: A Hero for Hallowwen", year: 2002 },
-        { id: 3200, title: "Even Stevens: A Very Scary Story", year: 2001 },
-        { id: 4605, title: "The Suite Life of Zack & Cody: Ghost of 613", year: 2005 },
-    
+    vintage: [
+        { id: 138, title: "Dracula", year: 1931 },
+        { id: 13666, title: "The Wolf Man", year: 1941 },
+        { id: 10331, title: "Night of the Living Dead", year: 1968 },
+        { id: 3035, title: "Frankenstein", year: 1931 },
+        { id: 15849, title: "The Mummy", year: 1932 }, 
+        { id: 3017, title: "Dr. Jekyll and Mr. Hyde", year: 1920 },
+        { id: 539, title: "Psycho", year: 1960 },
+        { id: 11772, title: "The Haunting", year: 1963 },
+        { id: 805, title: "Rosemary's Baby", year: 1968 },
+        { id: 18573, title: "House of Wax", year: 1953 },
+        { id: 571, title: "The Birds", year: 1963 },
+        { id: 42196, title: "The Bad Seed", year: 1956 },
+        { id: 964, title: "The Phantom of the Opera", year: 1925 },
+        { id: 3079, title: "The Curse of Frankenstein", year: 1957 },
+        { id: 30346, title: "The Body Snathcer", year: 1945 },
+        { id: 28501, title: "The Pit and the Pendulum", year: 1961 },
+        { id: 28752, title: "The Curse of the Werewolf", year: 1961 },
+        { id: 45714, title: "Night of the Eagle", year: 1962 },
+        { id: 3112, title: "The Night of the Hunter", year: 1955 },
+        { id: 229, title: "Bride of Frankenstein", year: 1935 },
+        { id: 28503, title: "Dementia 13", year: 1963 },
+        { id: 10242, title: "What Ever Happened to Baby Jane", year: 1962 },
+        { id: 11549, title: "Invasion of the Body Snatcher", year: 1956 },
+        { id: 11773, title: "Village of the Damned", year: 1960 },
+        { id: 3127, title: "The Revenge of Frankenstein", year: 1958 },
     ],  
     paranormal: [
         { id: 745, title: "The Sixth Sense", year: 1999 },   // Need to verify
@@ -296,7 +271,7 @@ const customMovies = {
         { id: 814, title: "An American Werewolf in London", year: 1981 },
 
     ],
-    zombieVirus: [
+    virus: [
         { id: 170, title: "28 Days Later", year: 2002 },    
         { id: 396535, title: "Train to Busan", year: 2016 },
         { id: 10331, title: "Night of the Living Dead", year: 1968 },
@@ -676,10 +651,10 @@ const tmdbGenres = {
 // Keywords for better API filtering
 const genreKeywords = {
     slasher: ['slasher', 'killer', 'murder', 'stalk'],
-    tvSeries: ['tv', 'series', 'horror', 'supernatural'],
+    vintage: ['vintage', 'murder', 'horror', 'blood'],
     paranormal: ['ghost', 'haunted', 'spirit', 'supernatural'],
     monster: ['monster', 'creature', 'alien', 'beast'],
-    zombieVirus: ['zombie', 'undead', 'apocalypse'],
+    virus: ['zombie', 'undead', 'apocalypse'],
     gore: ['blood', 'torture', 'brutal', 'violent'],
     kids: ['family', 'children', 'adventure'],
     vampire: ['vampire', 'blood', 'bite'],
@@ -687,6 +662,7 @@ const genreKeywords = {
     comedy: ['comedy', 'funny', 'humor']
 };
 
+// Main function - heavily favor custom movies to avoid API issues
 async function getMovieByGenre(genreType) {
     // 90% chance to use custom array, 10% chance for API
     const useCustom = Math.random() < 0.9;
@@ -697,22 +673,16 @@ async function getMovieByGenre(genreType) {
         
         console.log(`Trying custom movie:`, randomCustom.title, `ID: ${randomCustom.id}`);
         
-        // Use TV endpoint for tvSeries, movie endpoint for everything else
-        const mediaDetails = genreType === 'tvSeries' 
-            ? await getTVSeriesDetails(randomCustom.id)
-            : await getMovieDetails(randomCustom.id);
-            
-        if (mediaDetails) {
-            return { movie: mediaDetails, source: 'custom' };
+        const movieDetails = await getMovieDetails(randomCustom.id);
+        if (movieDetails) {
+            return { movie: movieDetails, source: 'custom' };
         } else {
-            console.log(`Custom ${genreType === 'tvSeries' ? 'TV series' : 'movie'} failed, trying another one...`);
-            // Try a different custom item if the first fails
+            console.log(`Custom movie failed, trying another one...`);
+            // Try a different custom movie if the first fails
             const anotherCustom = customMovieList[Math.floor(Math.random() * customMovieList.length)];
-            const anotherMediaDetails = genreType === 'tvSeries'
-                ? await getTVSeriesDetails(anotherCustom.id)
-                : await getMovieDetails(anotherCustom.id);
-            if (anotherMediaDetails) {
-                return { movie: anotherMediaDetails, source: 'custom' };
+            const anotherMovieDetails = await getMovieDetails(anotherCustom.id);
+            if (anotherMovieDetails) {
+                return { movie: anotherMovieDetails, source: 'custom' };
             }
         }
     }
@@ -783,42 +753,38 @@ function formatStreamingProviders(providers) {
 }
 
 // Enhanced displayMovie function with streaming info
-async function displayMovieWithStreaming(media, genreType, source = 'custom') {
+async function displayMovieWithStreaming(movie, genreType, source = 'custom') {
     const movieDisplay = document.getElementById('movieDisplay');
     const sourceText = source === 'custom' ? 'Curated Pick' : 
                       source === 'scare-selector' ? 'Scare Selector' : 'API Discovery';
     
-    // Handle both movies and TV series
-    const title = media.title || media.name || media.original_title || media.original_name;
-    const releaseDate = media.release_date || media.first_air_date || media.year;
-    
-    // Show basic info first
+    // Show basic movie info first
     movieDisplay.innerHTML = `
-        <h2>${title}</h2>
-        <img class="movieDisplayImage" src="https://image.tmdb.org/t/p/w500${media.poster_path}" alt="${title} Poster" onerror="this.onerror=null; this.src='./images/no-image.jpg';">
-        <p><strong>Genre:</strong> ${genreType.charAt(0).toUpperCase() + genreType.slice(1)} ${genreType === 'tvSeries' ? '' : 'Horror'}</p>
+        <h2>${movie.title || movie.original_title}</h2>
+        <img class="movieDisplayImage" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title} Poster" onerror="this.onerror=null; this.src='./images/no-image.jpg';">
+        <p><strong>Genre:</strong> ${genreType.charAt(0).toUpperCase() + genreType.slice(1)} Horror</p>
         <p><strong>Source:</strong> ${sourceText}</p>
-        <p><strong>Rating:</strong> ${media.vote_average ? media.vote_average.toFixed(1) : 'N/A'}/10</p>
-        <p><strong>Release Date:</strong> ${releaseDate}</p>
-        <p><strong>Media ID:</strong> ${media.id} (for debugging)</p>
+        <p><strong>Rating:</strong> ${movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}/10</p>
+        <p><strong>Release Date:</strong> ${movie.release_date || movie.year}</p>
+        <p><strong>Movie ID:</strong> ${movie.id} (for debugging)</p>
         <p><strong>Streaming:</strong> Loading...</p>
-        <p><strong>Overview:</strong><br>${media.overview || 'A classic ' + (genreType === 'tvSeries' ? 'horror TV series' : 'horror movie in the ' + genreType + ' genre.')}</p>`;
+        <p><strong>Overview:</strong><br>${movie.overview || 'A classic horror movie in the ' + genreType + ' genre.'}</p>`;
     
     // Get and add streaming info
-    const streamingInfo = await getStreamingAvailability(media.id);
+    const streamingInfo = await getStreamingAvailability(movie.id);
     const streamingHTML = formatStreamingProviders(streamingInfo);
     
     // Update the display with streaming info
     movieDisplay.innerHTML = `
-        <h2>${title}</h2>
-        <img class="movieDisplayImage" src="https://image.tmdb.org/t/p/w500${media.poster_path}" alt="${title} Poster" onerror="this.src='https://via.placeholder.com/500x750?text=No+Image'">
-        <p><strong>Genre:</strong> ${genreType.charAt(0).toUpperCase() + genreType.slice(1)} ${genreType === 'tvSeries' ? '' : 'Horror'}</p>
+        <h2>${movie.title || movie.original_title}</h2>
+        <img class="movieDisplayImage" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title} Poster" onerror="this.src='https://via.placeholder.com/500x750?text=No+Image'">
+        <p><strong>Genre:</strong> ${genreType.charAt(0).toUpperCase() + genreType.slice(1)} Horror</p>
         <p><strong>Source:</strong> ${sourceText}</p>
-        <p><strong>Rating:</strong> ${media.vote_average ? media.vote_average.toFixed(1) : 'N/A'}/10</p>
-        <p><strong>Release Date:</strong> ${releaseDate}</p>
-        <p><strong>Media ID:</strong> ${media.id} (for debugging)</p>
+        <p><strong>Rating:</strong> ${movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}/10</p>
+        <p><strong>Release Date:</strong> ${movie.release_date || movie.year}</p>
+        <p><strong>Movie ID:</strong> ${movie.id} (for debugging)</p>
         ${streamingHTML}
-        <p><strong>Overview:</strong><br>${media.overview || 'A classic ' + (genreType === 'tvSeries' ? 'horror TV series' : 'horror movie in the ' + genreType + ' genre.')}</p>`;
+        <p><strong>Overview:</strong><br>${movie.overview || 'A classic horror movie in the ' + genreType + ' genre.'}</p>`;
 }
 
 // Individual functions for each genre
@@ -826,8 +792,8 @@ async function pickSlasherMovie() {
     await pickMovieByGenre('slasher');
 }
 
-async function pickTVSeries() {
-    await pickMovieByGenre('tvSeries');
+async function pickVintageMovie() {
+    await pickMovieByGenre('vintage');
 }
 
 async function pickParanormalMovie() {
@@ -838,8 +804,8 @@ async function pickMonsterMovie() {
     await pickMovieByGenre('monster');
 }
 
-async function pickzombieVirusMovie() {
-    await pickMovieByGenre('zombieVirus');
+async function pickVirusMovie() {
+    await pickMovieByGenre('virus');
 }
 
 async function pickGoreMovie() {
