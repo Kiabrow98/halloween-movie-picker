@@ -121,3 +121,299 @@
         width: 120px;
     }
 }
+
+
+/*CSS for feedback function 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Floating Button */
+        #feedback-button {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: linear-gradient(135deg, #ea580c, #9333ea);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        #feedback-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 50px rgba(234, 88, 12, 0.4);
+        }
+
+        #feedback-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Modal Overlay */
+        #feedback-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #feedback-overlay.active {
+            display: flex;
+        }
+
+        /* Modal Container */
+        #feedback-modal {
+            background: #1f2937;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 450px;
+            max-height: 90vh;
+            overflow: hidden;
+            border: 2px solid #ea580c;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header */
+        #feedback-header {
+            background: linear-gradient(135deg, #ea580c, #9333ea);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #feedback-header h3 {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #close-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        #close-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Form Content */
+        #feedback-content {
+            padding: 24px;
+            max-height: calc(90vh - 80px);
+            overflow-y: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #d1d5db;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .optional {
+            color: #6b7280;
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        /* Feedback Type Buttons */
+        .feedback-types {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .type-button {
+            background: #374151;
+            border: 2px solid #4b5563;
+            color: #9ca3af;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .type-button:hover {
+            border-color: #6b7280;
+        }
+
+        .type-button.active.enjoyed {
+            background: rgba(234, 88, 12, 0.2);
+            border-color: #ea580c;
+            color: #fb923c;
+        }
+
+        .type-button.active.suggestion {
+            background: rgba(147, 51, 234, 0.2);
+            border-color: #9333ea;
+            color: #c084fc;
+        }
+
+        .type-button.active.incorrect {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #f87171;
+        }
+
+        .type-button svg {
+            width: 20px;
+            height: 20px;
+            margin: 0 auto 4px;
+            display: block;
+        }
+
+        .type-button .label {
+            font-size: 12px;
+        }
+
+        /* Input Fields */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            background: #374151;
+            border: 2px solid #4b5563;
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: white;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #ea580c;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Status Messages */
+        .status-message {
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid;
+            font-size: 14px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .status-message.success {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
+            color: #4ade80;
+            display: block;
+        }
+
+        .status-message.error {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #f87171;
+            display: block;
+        }
+
+        /* Submit Button */
+        #submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, #ea580c, #9333ea);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        #submit-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(234, 88, 12, 0.4);
+        }
+
+        #submit-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid white;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        #submit-button svg {
+            width: 20px;
+            height: 20px;
+        }
