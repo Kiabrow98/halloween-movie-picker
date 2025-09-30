@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halloween Movie Picker - Feedback Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Floating Button */
+        #feedback-button {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: linear-gradient(135deg, #ea580c, #9333ea);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        #feedback-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 50px rgba(234, 88, 12, 0.4);
+        }
+
+        #feedback-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Modal Overlay */
+        #feedback-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #feedback-overlay.active {
+            display: flex;
+        }
+
+        /* Modal Container */
+        #feedback-modal {
+            background: #1f2937;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 450px;
+            max-height: 90vh;
+            overflow: hidden;
+            border: 2px solid #ea580c;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header */
+        #feedback-header {
+            background: linear-gradient(135deg, #ea580c, #9333ea);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #feedback-header h3 {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #close-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        #close-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Form Content */
+        #feedback-content {
+            padding: 24px;
+            max-height: calc(90vh - 80px);
+            overflow-y: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #d1d5db;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .optional {
+            color: #6b7280;
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        /* Feedback Type Buttons */
+        .feedback-types {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .type-button {
+            background: #374151;
+            border: 2px solid #4b5563;
+            color: #9ca3af;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .type-button:hover {
+            border-color: #6b7280;
+        }
+
+        .type-button.active.enjoyed {
+            background: rgba(234, 88, 12, 0.2);
+            border-color: #ea580c;
+            color: #fb923c;
+        }
+
+        .type-button.active.suggestion {
+            background: rgba(147, 51, 234, 0.2);
+            border-color: #9333ea;
+            color: #c084fc;
+        }
+
+        .type-button.active.incorrect {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #f87171;
+        }
+
+        .type-button svg {
+            width: 20px;
+            height: 20px;
+            margin: 0 auto 4px;
+            display: block;
+        }
+
+        .type-button .label {
+            font-size: 12px;
+        }
+
+        /* Input Fields */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            background: #374151;
+            border: 2px solid #4b5563;
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: white;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #ea580c;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Status Messages */
+        .status-message {
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid;
+            font-size: 14px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .status-message.success {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
+            color: #4ade80;
+            display: block;
+        }
+
+        .status-message.error {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #f87171;
+            display: block;
+        }
+
+        /* Submit Button */
+        #submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, #ea580c, #9333ea);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        #submit-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(234, 88, 12, 0.4);
+        }
+
+        #submit-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid white;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        #submit-button svg {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Feedback Button -->
+    <button id="feedback-button">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+        </svg>
+        Send Feedback
+    </button>
+
+    <!-- Feedback Modal -->
+    <div id="feedback-overlay">
+        <div id="feedback-modal">
+            <!-- Header -->
+            <div id="feedback-header">
+                <h3>🎃 Feedback & Suggestions</h3>
+                <button id="close-button">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Form Content -->
+            <div id="feedback-content">
+                <div class="form-group">
+                    <label>What would you like to share?</label>
+                    <div class="feedback-types">
+                        <button class="type-button active enjoyed" data-type="enjoyed">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/>
+                            </svg>
+                            <div class="label">Enjoyed</div>
+                        </button>
+                        <button class="type-button suggestion" data-type="suggestion">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                            <div class="label">Suggestion</div>
+                        </button>
+                        <button class="type-button incorrect" data-type="incorrect">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <div class="label">Report Issue</div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Name <span class="optional">(optional)</span></label>
+                    <input type="text" id="name-input" placeholder="Your name">
+                </div>
+
+                <div class="form-group">
+                    <label>Email <span class="optional">(optional)</span></label>
+                    <input type="email" id="email-input" placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Movie Title <span class="optional" id="movie-optional">(optional)</span></label>
+                    <input type="text" id="movie-input" placeholder="Which movie?">
+                </div>
+
+                <div class="form-group">
+                    <label>Message *</label>
+                    <textarea id="message-input" placeholder="Tell us what you loved about this movie!" required></textarea>
+                </div>
+
+                <div id="status-message" class="status-message"></div>
+
+                <button id="submit-button">
+                    <svg id="submit-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/>
+                    </svg>
+                    <span id="submit-text">Send Feedback</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function()
+            {
+            const WEB3FORMS_KEY = 'ac044ef8-21b8-460a-9925-c67192058b02';
+
+            let currentFeedbackType = 'enjoyed';
+
+            // DOM Elements
+            const feedbackButton = document.getElementById('feedback-button');
+        const overlay = document.getElementById('feedback-overlay');
+        const closeButton = document.getElementById('close-button');
+        const submitButton = document.getElementById('submit-button');
+        const typeButtons = document.querySelectorAll('.type-button');
+        const statusMessage = document.getElementById('status-message');
+        const messageInput = document.getElementById('message-input');
+        const movieOptional = document.getElementById('movie-optional');
+        const submitIcon = document.getElementById('submit-icon');
+        const submitText = document.getElementById('submit-text');
+
+        // Open modal
+        feedbackButton.addEventListener('click', () => {
+            overlay.classList.add('active');
+        });
+
+        // Close modal
+        closeButton.addEventListener('click', () => {
+            overlay.classList.remove('active');
+        });
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+            }
+        });
+
+        // Feedback type selection
+        typeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                typeButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentFeedbackType = button.dataset.type;
+
+                // Update placeholder and movie field label
+                if (currentFeedbackType === 'enjoyed') {
+                    messageInput.placeholder = 'Tell us what you loved about this movie!';
+                    movieOptional.style.display = 'none';
+                } else if (currentFeedbackType === 'suggestion') {
+                    messageInput.placeholder = 'What movie should we add? Why?';
+                    movieOptional.style.display = 'inline';
+                } else {
+                    messageInput.placeholder = 'What information is incorrect?';
+                    movieOptional.style.display = 'none';
+                }
+            });
+        });
+
+        // Submit form
+        submitButton.addEventListener('click', async () => {
+            const name = document.getElementById('name-input').value;
+            const email = document.getElementById('email-input').value;
+            const movieTitle = document.getElementById('movie-input').value;
+            const message = messageInput.value.trim();
+
+            if (!message) {
+                showStatus('error', 'Please enter a message!');
+                return;
+            }
+
+            // Disable button and show loading
+            submitButton.disabled = true;
+            submitText.textContent = 'Sending...';
+            submitIcon.innerHTML = '<div class="spinner"></div>';
+            statusMessage.className = 'status-message';
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        access_key: WEB3FORMS_KEY,
+                        subject: `31 Screams Feedback - ${currentFeedbackType.charAt(0).toUpperCase() + currentFeedbackType.slice(1)}`,
+                        from_name: name || 'Anonymous',
+                        email: email || 'noreply@31screams.com',
+                        feedback_type: currentFeedbackType,
+                        movie_title: movieTitle,
+                        message: message
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showStatus('success', '✓ Thanks for your feedback! We appreciate it! 🎃');
+                    // Clear form
+                    document.getElementById('name-input').value = '';
+                    document.getElementById('email-input').value = '';
+                    document.getElementById('movie-input').value = '';
+                    messageInput.value = '';
+
+                    // Close modal after 2 seconds
+                    setTimeout(() => {
+                        overlay.classList.remove('active');
+                        statusMessage.className = 'status-message';
+                    }, 2000);
+                } else {
+                    showStatus('error', '✗ Oops! Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                showStatus('error', '✗ Oops! Something went wrong. Please try again.');
+            } finally {
+                // Reset button
+                submitButton.disabled = false;
+                submitText.textContent = 'Send Feedback';
+                submitIcon.innerHTML = '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>';
+            }
+        });
+
+        function showStatus(type, message) {
+            statusMessage.textContent = message;
+            statusMessage.className = `status-message ${type}`;
+        }
+
+            }
+        );
+    </script>
+
+</body>
+</html>
