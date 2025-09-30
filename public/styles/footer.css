@@ -155,23 +155,35 @@
             height: 24px;
         }
 
+
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         /* Modal Overlay */
         #feedback-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.7);
             z-index: 1001;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
         }
 
         #feedback-overlay.active {
-            display: flex;
+            display: block;  /* Changed from flex */
         }
 
         /* Modal Container */
@@ -185,20 +197,11 @@
             border: 2px solid #ea580c;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
             animation: slideUp 0.3s ease;
-            margin: 0 auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);  /* This centers it perfectly */
         }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         /* Header */
         #feedback-header {
             background: linear-gradient(135deg, #ea580c, #9333ea);
