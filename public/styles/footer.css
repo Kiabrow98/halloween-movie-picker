@@ -405,19 +405,25 @@
             height: 20px;
         }
 
-       @media (max-width: 480px) {
+     @media (max-width: 480px) {
     /* Feedback Button */
     #feedback-button {
-        padding: 10px 14px;
-        font-size: 14px;
-        top: 12px;
-        right: 12px;
+        padding: 6px 10px;
+        font-size: 12px;
+        top: 8px;
+        right: 8px;
+        max-width: 120px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     #feedback-button svg {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
+        margin-right: 4px;
     }
+
 
     /* Modal Container */
     #feedback-modal {
