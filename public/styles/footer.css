@@ -423,8 +423,9 @@ textarea {
         max-width: 85%;
         max-height: 85vh;
         border-radius: 12px;
-        margin-bottom: 15px;
-        margin-left: 0px;
+        margin-bottom: 30px;
+        margin-left: 10px;
+        margin-top: 10px;
     }
 
     #feedback-header {
@@ -459,7 +460,7 @@ textarea {
     #submit-button {
         padding: 12px;
         font-size: 14px;
-        margin-bottom: 15px;
+        margin-bottom: 25px;
     }
 
     #submit-button svg {
