@@ -860,3 +860,130 @@ function showHomePage() {
     // Clear any movie displays that might have back buttons
     document.getElementById('movieDisplay').innerHTML = '';
 }
+ // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function()
+            {
+            const WEB3FORMS_KEY = 'ac044ef8-21b8-460a-9925-c67192058b02';
+
+            let currentFeedbackType = 'enjoyed';
+
+            // DOM Elements
+            const feedbackButton = document.getElementById('feedback-button');
+        const overlay = document.getElementById('feedback-overlay');
+        const closeButton = document.getElementById('close-button');
+        const submitButton = document.getElementById('submit-button');
+        const typeButtons = document.querySelectorAll('.type-button');
+        const statusMessage = document.getElementById('status-message');
+        const messageInput = document.getElementById('message-input');
+        const movieOptional = document.getElementById('movie-optional');
+        const submitIcon = document.getElementById('submit-icon');
+        const submitText = document.getElementById('submit-text');
+
+        // Open modal
+        feedbackButton.addEventListener('click', () => {
+            overlay.classList.add('active');
+        });
+
+        // Close modal
+        closeButton.addEventListener('click', () => {
+            overlay.classList.remove('active');
+        });
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+            }
+        });
+
+        // Feedback type selection
+        typeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                typeButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentFeedbackType = button.dataset.type;
+
+                // Update placeholder and movie field label
+                if (currentFeedbackType === 'enjoyed') {
+                    messageInput.placeholder = 'Tell us what you loved about this movie!';
+                    movieOptional.style.display = 'none';
+                } else if (currentFeedbackType === 'suggestion') {
+                    messageInput.placeholder = 'What movie should we add? Why?';
+                    movieOptional.style.display = 'inline';
+                } else {
+                    messageInput.placeholder = 'What information is incorrect?';
+                    movieOptional.style.display = 'none';
+                }
+            });
+        });
+
+        // Submit form
+        submitButton.addEventListener('click', async () => {
+            const name = document.getElementById('name-input').value;
+            const email = document.getElementById('email-input').value;
+            const movieTitle = document.getElementById('movie-input').value;
+            const message = messageInput.value.trim();
+
+            if (!message) {
+                showStatus('error', 'Please enter a message!');
+                return;
+            }
+
+            // Disable button and show loading
+            submitButton.disabled = true;
+            submitText.textContent = 'Sending...';
+            submitIcon.innerHTML = '<div class="spinner"></div>';
+            statusMessage.className = 'status-message';
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        access_key: WEB3FORMS_KEY,
+                        subject: `31 Screams Feedback - ${currentFeedbackType.charAt(0).toUpperCase() + currentFeedbackType.slice(1)}`,
+                        from_name: name || 'Anonymous',
+                        email: email || 'noreply@31screams.com',
+                        feedback_type: currentFeedbackType,
+                        movie_title: movieTitle,
+                        message: message
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showStatus('success', '✓ Thanks for your feedback! We appreciate it! 🎃');
+                    // Clear form
+                    document.getElementById('name-input').value = '';
+                    document.getElementById('email-input').value = '';
+                    document.getElementById('movie-input').value = '';
+                    messageInput.value = '';
+
+                    // Close modal after 2 seconds
+                    setTimeout(() => {
+                        overlay.classList.remove('active');
+                        statusMessage.className = 'status-message';
+                    }, 2000);
+                } else {
+                    showStatus('error', '✗ Oops! Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                showStatus('error', '✗ Oops! Something went wrong. Please try again.');
+            } finally {
+                // Reset button
+                submitButton.disabled = false;
+                submitText.textContent = 'Send Feedback';
+                submitIcon.innerHTML = '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>';
+            }
+        });
+
+        function showStatus(type, message) {
+            statusMessage.textContent = message;
+            statusMessage.className = `status-message ${type}`;
+        }
+
+            }
+        );
