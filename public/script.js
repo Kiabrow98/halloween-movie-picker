@@ -12,6 +12,7 @@ window.onload = function() {
         " \n"+
         "Thanks for using the Halloween Movie Picker! I'm actively adding movies and new features, and you may sometimes encounter incorrect listings (a movie showing the wrong title or thumbnail). \n" +
         "I apologize for any confusion — please use the feedback button on the 'About Me' page to tell me what went wrong (include the genre, the wrong listing, and what you expected). That helps me fix it faster. \n" +
+        " \n"+
         "Versioning: Because I'll be continuously deploying new features and movie lists, I'll share/post a new site link after each major update so you can access the most up-to-date version. \n" +
         "Follow the link and check the latest build. \n" +
         "Thanks for reporting bugs and helping improve the app!"
