@@ -233,6 +233,7 @@
 /* Form Content */
 #feedback-content {
     padding: 20px;
+    margin-bottom: 15px;
     max-height: calc(90vh - 80px);
     overflow-y: auto;
 }
