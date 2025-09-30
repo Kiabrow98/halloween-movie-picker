@@ -424,8 +424,7 @@ textarea {
         max-height: 85vh;
         border-radius: 12px;
         margin-bottom: 15px;
-        justify-content: center;
-        align-items: center;
+        margin-left: 0px;
     }
 
     #feedback-header {
@@ -439,6 +438,7 @@ textarea {
     #feedback-content {
         padding: 16px;
         max-height: calc(85vh - 70px);
+        margin-bottom: 10px;
     }
 
     .form-group {
