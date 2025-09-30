@@ -456,6 +456,7 @@ textarea {
     #submit-button {
         padding: 12px;
         font-size: 14px;
+        margin-bottom: 15px;
     }
 
     #submit-button svg {
