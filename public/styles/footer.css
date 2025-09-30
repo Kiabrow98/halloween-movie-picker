@@ -315,7 +315,7 @@ textarea {
     background: #374151;
     border: 2px solid #4b5563;
     border-radius: 8px;
-    padding: 12px 16px;
+    padding: 12px 12px;
     color: white;
     font-size: 14px;
     transition: border-color 0.2s;
@@ -424,8 +424,6 @@ textarea {
         max-height: 85vh;
         border-radius: 12px;
         margin-bottom: 30px;
-        margin-left: 10px;
-        margin-top: 10px;
     }
 
     #feedback-header {
