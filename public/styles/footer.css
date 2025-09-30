@@ -200,7 +200,7 @@
 /* Header */
 #feedback-header {
     background: linear-gradient(135deg, #ea580c, #9333ea);
-    padding: 20px;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -427,7 +427,7 @@ textarea {
     }
 
     #feedback-header {
-        padding: 16px;
+        padding: 10px;
     }
 
     #feedback-header h3 {
