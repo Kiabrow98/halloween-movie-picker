@@ -127,14 +127,14 @@
 /* Floating Button */
         #feedback-button {
             position: fixed;
-            top: 24px;
-            right: 24px;
+            top: 20px;
+            right: 20px;
             background: linear-gradient(135deg, #ea580c, #9333ea);
             color: white;
             border: none;
             border-radius: 50px;
             padding: 16px 20px;
-            font-size: 16px;
+            font-size: 10px;
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
@@ -406,24 +406,17 @@
         }
 
      @media (max-width: 480px) {
-    /* Feedback Button */
+        /* Feedback Button */
         #feedback-button {
-            position: fixed;
-            bottom: 12px;
-            left: 12px;
-            padding: 6px 10px;
-            font-size: 13px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            border-radius: 8px;
-            white-space: nowrap;
-            z-index: 1000;
+            padding: 10px 14px;
+            font-size: 14px;
+            top: 12px;
+            right: 12px;
         }
 
         #feedback-button svg {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
         }
 
 
