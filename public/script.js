@@ -881,35 +881,21 @@ function showHomePage() {
         const submitIcon = document.getElementById('submit-icon');
         const submitText = document.getElementById('submit-text');
 
-        // --- OPEN/CLOSE: prevent background scroll and focus first field ---
+        // Open modal
         feedbackButton.addEventListener('click', () => {
             overlay.classList.add('active');
-            // prevent body scroll behind modal
-            document.body.style.overflow = 'hidden';
-            // focus the message field so mobile keyboard appears and user can type
-            setTimeout(() => {
-                messageInput.focus();
-            }, 120);
         });
 
-        // Close modal (restore scroll)
-        function closeModal() {
+        // Close modal
+        closeButton.addEventListener('click', () => {
             overlay.classList.remove('active');
-            document.body.style.overflow = ''; // restore
-            statusMessage.className = 'status-message'; // clear status visuals (optional)
-        }
-        closeButton.addEventListener('click', closeModal);
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) closeModal();
         });
 
-        // Also close on ESC for accessibility
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && overlay.classList.contains('active')) {
-                closeModal();
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
             }
         });
-
 
         // Feedback type selection
         typeButtons.forEach(button => {
@@ -980,7 +966,8 @@ function showHomePage() {
 
                     // Close modal after 2 seconds
                     setTimeout(() => {
-                        closeModal();
+                        overlay.classList.remove('active');
+                        statusMessage.className = 'status-message';
                     }, 2000);
                 } else {
                     showStatus('error', '✗ Oops! Something went wrong. Please try again.');
@@ -999,4 +986,4 @@ function showHomePage() {
             statusMessage.textContent = message;
             statusMessage.className = `status-message ${type}`;
         }
-        });
+    });
