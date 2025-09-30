@@ -185,7 +185,7 @@
             border: 2px solid #ea580c;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
             animation: slideUp 0.3s ease;
-            padding: -20px -20px;
+            margin: 0 auto;
         }
 
         @keyframes slideUp {
