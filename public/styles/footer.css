@@ -125,310 +125,165 @@
 
 /*CSS for feedback function 
 /* Floating Button */
-        #feedback-button {
-            position: fixed;
-            top: 16px;
-            right: 16px;
-            background: linear-gradient(135deg, #ea580c, #9333ea);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 12px 16px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            max-width: calc(100vw - 32px);
-        }
+#feedback-button {
+    position: fixed;
+    bottom: 16px;         /* changed from top */
+    right: 16px;
+    background: linear-gradient(135deg, #ea580c, #9333ea);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    max-width: calc(100vw - 32px);
+}
 
-        #feedback-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 40px rgba(234, 88, 12, 0.4);
-        }
+/* Desktop/Tablet adjust for bottom placement */
+@media (min-width: 768px) {
+    #feedback-button {
+        bottom: 24px;
+        right: 24px;
+        padding: 16px 20px;
+        font-size: 16px;
+        gap: 8px;
+    }
 
-        #feedback-button svg {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-        }
+    #feedback-button svg {
+        width: 24px;
+        height: 24px;
+    }
 
-        #feedback-button span {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+    #feedback-button:hover {
+        transform: scale(1.1);
+    }
+}
 
-        /* Desktop/Tablet - larger button with more padding */
-        @media (min-width: 768px) {
-            #feedback-button {
-                top: 24px;
-                right: 24px;
-                padding: 16px 20px;
-                font-size: 16px;
-                gap: 8px;
-            }
+/* Modal Overlay */
+#feedback-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1001;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
 
-            #feedback-button svg {
-                width: 24px;
-                height: 24px;
-            }
+/* On small screens anchor modal to bottom so keyboard won't hide submit */
+@media (max-width: 767px) {
+    #feedback-overlay {
+        align-items: flex-end;
+        padding: 12px;
+    }
+}
 
-            #feedback-button:hover {
-                transform: scale(1.1);
-            }
-        }
+/* Modal Container — make it a column so header/content/footer behave predictably */
+#feedback-modal {
+    background: #1f2937;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 450px;
+    max-height: 90vh;
+    overflow: hidden;
+    border: 2px solid #ea580c;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    animation: slideUp 0.3s ease;
 
-        /* Modal Overlay */
-        #feedback-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1001;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+    display: flex;              /* NEW */
+    flex-direction: column;     /* NEW */
+}
 
-        #feedback-overlay.active {
-            display: flex;
-        }
+/* For small screens give a slightly different corner style */
+@media (max-width: 767px) {
+    #feedback-modal {
+        border-radius: 12px 12px 0 0;
+        max-width: 100%;
+        width: 100%;
+        max-height: calc(100vh - 12px);
+    }
+}
 
-        /* Modal Container */
-        #feedback-modal {
-            background: #1f2937;
-            border-radius: 16px;
-            width: 100%;
-            max-width: 450px;
-            max-height: 90vh;
-            overflow: hidden;
-            border: 2px solid #ea580c;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-            animation: slideUp 0.3s ease;
-        }
+/* Header (unchanged) */
+#feedback-header {
+    background: linear-gradient(135deg, #ea580c, #9333ea);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+/* Form Content — make this the scrollable area and allow footer (submit) to stay visible */
+#feedback-content {
+    padding: 24px;
+    /* make it grow and scroll independently inside the modal */
+    overflow-y: auto;
+    flex: 1; /* NEW */
+    /* ensure content has bottom room for sticky footer and phone safe-area */
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 16px)); /* NEW */
+    max-height: calc(90vh - 80px);
+    display: flex;            /* NEW */
+    flex-direction: column;   /* NEW */
+}
 
-        /* Header */
-        #feedback-header {
-            background: linear-gradient(135deg, #ea580c, #9333ea);
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* Make the grid responsive instead of fixed 3 columns */
+.feedback-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+    margin-bottom: 20px;
+}
 
-        #feedback-header h3 {
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-        }
+/* Submit Button — sticky so it stays visible inside the scrollable area */
+#submit-button {
+    width: 100%;
+    background: linear-gradient(135deg, #ea580c, #9333ea);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 
-        #close-button {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-        }
+    /* sticky positioning so it remains visible at bottom of #feedback-content */
+    position: sticky;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px)); /* NEW */
+    margin-top: 8px; /* small gap from scroll content */
+    z-index: 2;
+}
 
-        #close-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
+/* Add a subtle background behind sticky button on small screens (optional) */
+@media (max-width: 767px) {
+    #submit-button {
+        border-radius: 12px;
+    }
+}
 
-        /* Form Content */
-        #feedback-content {
-            padding: 24px;
-            max-height: calc(90vh - 80px);
-            overflow-y: auto;
-        }
+/* minor: ensure spinner fits in sticky area */
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            color: #d1d5db;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .optional {
-            color: #6b7280;
-            font-size: 12px;
-            font-weight: normal;
-        }
-
-        /* Feedback Type Buttons */
-        .feedback-types {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .type-button {
-            background: #374151;
-            border: 2px solid #4b5563;
-            color: #9ca3af;
-            padding: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: center;
-        }
-
-        .type-button:hover {
-            border-color: #6b7280;
-        }
-
-        .type-button.active.enjoyed {
-            background: rgba(234, 88, 12, 0.2);
-            border-color: #ea580c;
-            color: #fb923c;
-        }
-
-        .type-button.active.suggestion {
-            background: rgba(147, 51, 234, 0.2);
-            border-color: #9333ea;
-            color: #c084fc;
-        }
-
-        .type-button.active.incorrect {
-            background: rgba(239, 68, 68, 0.2);
-            border-color: #ef4444;
-            color: #f87171;
-        }
-
-        .type-button svg {
-            width: 20px;
-            height: 20px;
-            margin: 0 auto 4px;
-            display: block;
-        }
-
-        .type-button .label {
-            font-size: 12px;
-        }
-
-        /* Input Fields */
-        input[type="text"],
-        input[type="email"],
-        textarea {
-            width: 100%;
-            background: #374151;
-            border: 2px solid #4b5563;
-            border-radius: 8px;
-            padding: 12px 16px;
-            color: white;
-            font-size: 14px;
-            transition: border-color 0.2s;
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #ea580c;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-            font-family: Arial, sans-serif;
-        }
-
-        /* Status Messages */
-        .status-message {
-            padding: 12px;
-            border-radius: 8px;
-            border: 2px solid;
-            font-size: 14px;
-            margin-bottom: 16px;
-            display: none;
-        }
-
-        .status-message.success {
-            background: rgba(34, 197, 94, 0.2);
-            border-color: #22c55e;
-            color: #4ade80;
-            display: block;
-        }
-
-        .status-message.error {
-            background: rgba(239, 68, 68, 0.2);
-            border-color: #ef4444;
-            color: #f87171;
-            display: block;
-        }
-
-        /* Submit Button */
-        #submit-button {
-            width: 100%;
-            background: linear-gradient(135deg, #ea580c, #9333ea);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 14px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        #submit-button:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(234, 88, 12, 0.4);
-        }
-
-        #submit-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .spinner {
-            width: 20px;
-            height: 20px;
-            border: 2px solid white;
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        #submit-button svg {
-            width: 20px;
-            height: 20px;
-        }
+/* keep rest of your CSS... */

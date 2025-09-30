@@ -881,21 +881,35 @@ const WEB3FORMS_KEY = 'ac044ef8-21b8-460a-9925-c67192058b02';
         const submitIcon = document.getElementById('submit-icon');
         const submitText = document.getElementById('submit-text');
 
-        // Open modal
+        // --- OPEN/CLOSE: prevent background scroll and focus first field ---
         feedbackButton.addEventListener('click', () => {
             overlay.classList.add('active');
+            // prevent body scroll behind modal
+            document.body.style.overflow = 'hidden';
+            // focus the message field so mobile keyboard appears and user can type
+            setTimeout(() => {
+                messageInput.focus();
+            }, 120);
         });
 
-        // Close modal
-        closeButton.addEventListener('click', () => {
+        // Close modal (restore scroll)
+        function closeModal() {
             overlay.classList.remove('active');
+            document.body.style.overflow = ''; // restore
+            statusMessage.className = 'status-message'; // clear status visuals (optional)
+        }
+        closeButton.addEventListener('click', closeModal);
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeModal();
         });
 
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) {
-                overlay.classList.remove('active');
+        // Also close on ESC for accessibility
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                closeModal();
             }
         });
+
 
         // Feedback type selection
         typeButtons.forEach(button => {
