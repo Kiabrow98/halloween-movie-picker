@@ -9,10 +9,11 @@ window.onload = function() {
   );
   alert(
         "Disclaimer & Release Notes: Movie data is sourced from The Movie Database (TMDb) API. All movie titles, images, and descriptions are the property of their respective owners. This site is for educational and entertainment purposes only. \n" +
+        " \n"+
         "Thanks for using the Halloween Movie Picker! I'm actively adding movies and new features, and you may sometimes encounter incorrect listings (a movie showing the wrong title or thumbnail). \n" +
         "I apologize for any confusion — please use the feedback button on the 'About Me' page to tell me what went wrong (include the genre, the wrong listing, and what you expected). That helps me fix it faster. \n" +
         "Versioning: Because I'll be continuously deploying new features and movie lists, I'll share/post a new site link after each major update so you can access the most up-to-date version. \n" +
-        "Follow the link or check the Releases/Updates section to get the latest build. \n" +
+        "Follow the link and check the latest build. \n" +
         "Thanks for reporting bugs and helping improve the app!"
   );
 };
@@ -902,10 +903,10 @@ function showHomePage() {
 
                 // Update placeholder and movie field label
                 if (currentFeedbackType === 'enjoyed') {
-                    messageInput.placeholder = 'Tell us what you loved about this movie!';
+                    messageInput.placeholder = 'Tell me what you loved about this movie!';
                     movieOptional.style.display = 'none';
                 } else if (currentFeedbackType === 'suggestion') {
-                    messageInput.placeholder = 'What movie should we add? Why?';
+                    messageInput.placeholder = 'What movie should I add? Why?';
                     movieOptional.style.display = 'inline';
                 } else {
                     messageInput.placeholder = 'What information is incorrect?';
