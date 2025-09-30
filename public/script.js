@@ -865,7 +865,7 @@ function showHomePage() {
 
 
          document.addEventListener('DOMContentLoaded', function() {
-const WEB3FORMS_KEY = 'ac044ef8-21b8-460a-9925-c67192058b02';
+            const WEB3FORMS_KEY = 'ac044ef8-21b8-460a-9925-c67192058b02';
 
             let currentFeedbackType = 'enjoyed';
 
@@ -980,8 +980,7 @@ const WEB3FORMS_KEY = 'ac044ef8-21b8-460a-9925-c67192058b02';
 
                     // Close modal after 2 seconds
                     setTimeout(() => {
-                        overlay.classList.remove('active');
-                        statusMessage.className = 'status-message';
+                        closeModal();
                     }, 2000);
                 } else {
                     showStatus('error', '✗ Oops! Something went wrong. Please try again.');
