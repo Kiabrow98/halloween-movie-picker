@@ -404,3 +404,58 @@
             width: 20px;
             height: 20px;
         }
+
+       @media (max-width: 480px) {
+    /* Feedback Button */
+    #feedback-button {
+        padding: 10px 14px;
+        font-size: 14px;
+        top: 12px;
+        right: 12px;
+    }
+
+    #feedback-button svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Modal Container */
+    #feedback-modal {
+        max-width: 90%;
+        border-radius: 12px;
+    }
+
+    /* Modal Header */
+    #feedback-header {
+        padding: 14px;
+    }
+
+    #feedback-header h3 {
+        font-size: 16px;
+    }
+
+    /* Modal Content */
+    #feedback-content {
+        padding: 16px;
+    }
+
+    /* Form Inputs */
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    /* Submit Button */
+    #submit-button {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    #submit-button svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
