@@ -420,7 +420,7 @@ textarea {
     }
 
     #feedback-modal {
-        max-width: 95%;
+        max-width: 85%;
         max-height: 85vh;
         border-radius: 12px;
         margin-bottom: 15px;
