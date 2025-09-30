@@ -407,22 +407,26 @@
 
      @media (max-width: 480px) {
     /* Feedback Button */
-    #feedback-button {
-        padding: 6px 10px;
-        font-size: 12px;
-        top: 8px;
-        right: 8px;
-        max-width: 120px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+        #feedback-button {
+            position: fixed;
+            bottom: 12px;
+            left: 12px;
+            padding: 6px 10px;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 8px;
+            white-space: nowrap;
+            z-index: 1000;
+        }
 
-    #feedback-button svg {
-        width: 16px;
-        height: 16px;
-        margin-right: 4px;
-    }
+        #feedback-button svg {
+            width: 16px;
+            height: 16px;
+        }
+
+
 
 
     /* Modal Container */
