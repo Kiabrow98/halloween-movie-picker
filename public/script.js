@@ -13,6 +13,8 @@ window.onload = function() {
         "Thanks for using the Halloween Movie Picker! I'm actively adding movies and new features, and you may sometimes encounter incorrect listings (a movie showing the wrong title or thumbnail). \n" +
         "I apologize for any confusion — please use the feedback button on the 'About Me' page to tell me what went wrong (include the genre and the wrong listing). That helps me fix it faster. \n" +
         " \n"+
+        "Note: If you click a genre or use the scare selector and no movie appears, please try again — sometimes it takes a couple of clicks to generate one. I apologize for the hiccup and appreciate the patience. \n" +
+        "\n" +
         "Versioning: Because I'll be continuously deploying new features and movie lists, I'll share/post a new site link after each major update so you can access the most up-to-date version. \n" +
         "Follow the link and check the latest build. \n" +
         "Thanks for reporting bugs and helping improve the website!"
