@@ -11,11 +11,11 @@ window.onload = function() {
         "Disclaimer & Release Notes: Movie data is sourced from The Movie Database (TMDb) API. All movie titles, images, and descriptions are the property of their respective owners. This site is for educational and entertainment purposes only. \n" +
         " \n"+
         "Thanks for using the Halloween Movie Picker! I'm actively adding movies and new features, and you may sometimes encounter incorrect listings (a movie showing the wrong title or thumbnail). \n" +
-        "I apologize for any confusion — please use the feedback button on the 'About Me' page to tell me what went wrong (include the genre, the wrong listing, and what you expected). That helps me fix it faster. \n" +
+        "I apologize for any confusion — please use the feedback button on the 'About Me' page to tell me what went wrong (include the genre and the wrong listing). That helps me fix it faster. \n" +
         " \n"+
         "Versioning: Because I'll be continuously deploying new features and movie lists, I'll share/post a new site link after each major update so you can access the most up-to-date version. \n" +
         "Follow the link and check the latest build. \n" +
-        "Thanks for reporting bugs and helping improve the app!"
+        "Thanks for reporting bugs and helping improve the website!"
   );
 };
 
@@ -110,10 +110,10 @@ async function getStreamingAvailability(movieId) {
 // Custom movie arrays with VERIFIED TMDB IDs
 const customMovies = {
     slasher: [
-        { id: 948, title: "Halloween", year: 1978 },          // VERIFIED
-        { id: 377, title: "A Nightmare on Elm Street", year: 1984 }, // VERIFIED
-        { id: 4232, title: "Scream", year: 1996 },           // Need to verify
-        { id: 176, title: "Saw", year: 2004 },              // Need to verify
+        { id: 948, title: "Halloween", year: 1978 },         
+        { id: 377, title: "A Nightmare on Elm Street", year: 1984 }, 
+        { id: 4232, title: "Scream", year: 1996 },           
+        { id: 176, title: "Saw", year: 2004 },              
         { id: 86328, title: "Terrifier", year: 2011 },
         { id: 13885, title: "Sweeney Todd: The Demon Barber of Fleet Street", year: 2007 },
         { id: 9529, title: "Candyman", year: 1992 },
@@ -182,9 +182,9 @@ const customMovies = {
         { id: 3127, title: "The Revenge of Frankenstein", year: 1958 },
     ],  
     paranormal: [
-        { id: 745, title: "The Sixth Sense", year: 1999 },   // Need to verify
-        { id: 565, title: "The Ring", year: 2002 },          // Need to verify
-        { id: 1085, title: "Poltergeist", year: 1982 },       // Need to verify
+        { id: 745, title: "The Sixth Sense", year: 1999 },   
+        { id: 565, title: "The Ring", year: 2002 },          
+        { id: 609, title: "Poltergeist", year: 1982 },       
         { id: 9913, title: "The Skeleton Key", year: 2005 },
         { id: 694, title: "The Shining", year: 1980 },
         { id: 609, title: "Poltergeist", year: 1982 },
@@ -208,9 +208,9 @@ const customMovies = {
         { id: 480414, title: "The Curse of La Llorona", year: 2019 },
         { id: 82507, title: "Sinister", year: 2012 },
         { id: 1226578, title: "Longlegs", year: 2024 },
-        { id: 9552, title: "The Exorcist", year: 1973 },      // Need to verify
-        { id: 138843, title: "The Conjuring", year: 2013 },  // Need to verify
-        { id: 419704, title: "Hereditary", year: 2018 },      // Need to verify
+        { id: 9552, title: "The Exorcist", year: 1973 },      
+        { id: 138843, title: "The Conjuring", year: 2013 },  
+        { id: 493922, title: "Hereditary", year: 2018 },      
         { id: 8643, title: "The Exorcism of Emily Rose", year: 2005 }, 
         { id: 48171, title: "The Rite", year: 2011 },
         { id: 1038392, title: "The Conjuring: Last Rites", year: 2025 },
@@ -265,7 +265,6 @@ const customMovies = {
         { id: 9360, title: "Anaconda", year: 1997},
         { id: 913290, title: "Barbarian", year: 2022 },
         { id: 439015, title: "Slender Man", year: 2018},
-        { id: 762505, title: "Nope", year: 2022 }, // A is for Asia//verify
         { id: 945961, title: "Alien: Romulus", year: 2024 },
         { id: 7191, title: "Cloverfield", year: 2008 },
         { id: 814, title: "An American Werewolf in London", year: 1981 },
@@ -304,7 +303,6 @@ const customMovies = {
         { id: 28429, title: "The Texas Chainsaw Massacre: A Family Portrait", year: 1988 },
         { id: 10066, title: "House of Wax", year: 2005 },
         { id: 103620, title: "Maniac", year: 2012 },
-        { id: 2251, title: "Ichi the Killer", year: 2001 }, //Unfaithful//verify
         { id: 12491, title: "High Tension", year: 2003 },
         { id: 663712, title: "Terrifier 2", year: 2022 },
         { id: 16921, title: "Autopsy", year: 2008 },
@@ -319,8 +317,8 @@ const customMovies = {
         { id: 55779, title: "Final Destination 5", year: 2011 },
     ],
     kids: [
-        { id: 14836, title: "Coraline", year: 2009 },        // Need to verify
-        { id: 9479, title: "The Nightmare Before Christmas", year: 1993 }, // Need to verify
+        { id: 14836, title: "Coraline", year: 2009 },       
+        { id: 9479, title: "The Nightmare Before Christmas", year: 1993 },
         { id: 21481, title: "Twitches", year: 2005 },
         { id: 46169, title: "Twitches Too", year: 2007 },
         { id: 10439, title: "Hocus Pocus", year: 1993 },
@@ -380,7 +378,7 @@ const customMovies = {
     ],
     psychological: [
         { id: 274, title: "The Silence of the Lambs", year: 1991 },
-        { id: 11252, title: "Psycho", year: 1998 },             // Need to verify
+        { id: 11252, title: "Psycho", year: 1998 },           
         { id: 2291, title: "Jacob's Ladder", year: 1990 },
         { id: 456529, title: "Jacob's Ladder", year: 2019 },
         { id: 807, title: "Se7en", year: 1995 },
@@ -403,7 +401,6 @@ const customMovies = {
         { id: 502416, title: "Ma", year: 2019 },
         { id: 21208, title: "Orphan", year: 2009 },
         { id: 522681, title: "Escape Room", year: 2019 },
-        { id: 762505, title: "Nope", year: 2022 },
     ],
     comedy: [
         { id: 747, title: "Shaun of the Dead", year: 2004 },
@@ -421,10 +418,10 @@ const customMovies = {
         { id: 184345, title: "A Haunted House 2", year: 2014 },
     ],
     horror: [
-        { id: 948, title: "Halloween", year: 1978 },          // VERIFIED
-        { id: 377, title: "A Nightmare on Elm Street", year: 1984 }, // VERIFIED
-        { id: 4232, title: "Scream", year: 1996 },           // Need to verify
-        { id: 176, title: "Saw", year: 2004 },              // Need to verify
+        { id: 948, title: "Halloween", year: 1978 },          
+        { id: 377, title: "A Nightmare on Elm Street", year: 1984 }, 
+        { id: 4232, title: "Scream", year: 1996 },           
+        { id: 176, title: "Saw", year: 2004 },              
         { id: 86328, title: "Terrifier", year: 2011 },
         { id: 13885, title: "Sweeney Todd: The Demon Barber of Fleet Street", year: 2007 },
         { id: 9529, title: "Candyman", year: 1992 },
@@ -462,9 +459,9 @@ const customMovies = {
         { id: 10225, title: "Friday the 13th Part VI: Jason Lives", year: 1986 },
         { id: 10281, title: "Friday the 13th Part VII: The New Blood", year: 1988 },
         { id: 6466, title: "Freddy vs. Jason", year: 2003 },
-        { id: 9552, title: "The Exorcist", year: 1973 },      // Need to verify
-        { id: 138843, title: "The Conjuring", year: 2013 },  // Need to verify
-        { id: 419704, title: "Hereditary", year: 2018 },      // Need to verify
+        { id: 9552, title: "The Exorcist", year: 1973 },      
+        { id: 138843, title: "The Conjuring", year: 2013 },  
+        { id: 419704, title: "Hereditary", year: 2018 },      
         { id: 8643, title: "The Exorcism of Emily Rose", year: 2005 }, 
         { id: 48171, title: "The Rite", year: 2011 },
         { id: 1038392, title: "The Conjuring: Last Rites", year: 2025 },
@@ -499,9 +496,9 @@ const customMovies = {
         { id: 585282, title: "Tales from the Crypt: Volume 3", year: 1990 },
         { id: 439079, title: "The Nun", year: 2018 },
         { id: 11380, title: "Bones", year: 2001 },
-        { id: 745, title: "The Sixth Sense", year: 1999 },   // Need to verify
-        { id: 565, title: "The Ring", year: 2002 },          // Need to verify
-        { id: 1085, title: "Poltergeist", year: 1982 },       // Need to verify
+        { id: 745, title: "The Sixth Sense", year: 1999 },   
+        { id: 565, title: "The Ring", year: 2002 },          
+        { id: 1085, title: "Poltergeist", year: 1982 },       
         { id: 9913, title: "The Skeleton Key", year: 2005 },
         { id: 694, title: "The Shining", year: 1980 },
         { id: 609, title: "Poltergeist", year: 1982 },
@@ -517,9 +514,9 @@ const customMovies = {
         { id: 8913, title: "Pet Sematary", year: 1989 },
         { id: 157433, title: "Pet Sematary", year: 2019 },
         { id: 9030, title: "The Eye", year: 2008 },
-        { id: 348, title: "Alien", year: 1979 },             // Need to verify
-        { id: 1091, title: "The Thing", year: 1982 },        // Need to verify
-        { id: 106, title: "Predator", year: 1987 },          // Need to verify
+        { id: 348, title: "Alien", year: 1979 },             
+        { id: 1091, title: "The Thing", year: 1982 },        
+        { id: 106, title: "Predator", year: 1987 },          
         { id: 19614, title: "IT", year: 1990}, 
         { id: 346364, title: "IT", year: 2017 },
         { id: 474350, title: "IT Chapter Two", year: 2019 },
@@ -553,8 +550,8 @@ const customMovies = {
         { id: 16921, title: "Autopsy", year: 2008 },
         { id: 604079, title: "The Long Walk", year: 2025 },
         { id: 19994, title: "Jennifer's Body", year: 2009 },
-        { id: 14836, title: "Coraline", year: 2009 },        // Need to verify
-        { id: 9479, title: "The Nightmare Before Christmas", year: 1993 }, // Need to verify
+        { id: 14836, title: "Coraline", year: 2009 },        
+        { id: 9479, title: "The Nightmare Before Christmas", year: 1993 }, 
         { id: 21481, title: "Twitches", year: 2005 },
         { id: 46169, title: "Twitches Too", year: 2007 },
         { id: 10439, title: "Hocus Pocus", year: 1993 },
@@ -601,7 +598,7 @@ const customMovies = {
         { id: 52520, title: "Underworld: Awakening", year: 2012 },
         { id: 346672, title: "Underworld: Blood Wars", year: 2016 },
         { id: 274, title: "The Silence of the Lambs", year: 1991 },
-        { id: 11252, title: "Psycho", year: 1998 },             // Need to verify
+        { id: 11252, title: "Psycho", year: 1998 },             
         { id: 2291, title: "Jacob's Ladder", year: 1990 },
         { id: 456529, title: "Jacob's Ladder", year: 2019 },
         { id: 807, title: "Se7en", year: 1995 },
@@ -763,7 +760,6 @@ async function displayMovieWithStreaming(movie, genreType, source = 'custom') {
         <h2>${movie.title || movie.original_title}</h2>
         <img class="movieDisplayImage" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title} Poster" onerror="this.onerror=null; this.src='./images/no-image.jpg';">
         <p><strong>Genre:</strong> ${genreType.charAt(0).toUpperCase() + genreType.slice(1)} Horror</p>
-        <p><strong>Source:</strong> ${sourceText}</p>
         <p><strong>Rating:</strong> ${movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}/10</p>
         <p><strong>Release Date:</strong> ${movie.release_date || movie.year}</p>
         <p><strong>Movie ID:</strong> ${movie.id} (for debugging)</p>
