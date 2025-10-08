@@ -953,7 +953,7 @@ function showHomePage() {
                 const data = await response.json();
 
                 if (data.success) {
-                    showStatus('success', '✓ Thanks for your feedback! We appreciate it! 🎃');
+                    showStatus('success', '✓ Thanks for your feedback! I appreciate it! 🎃');
                     // Clear form
                     document.getElementById('name-input').value = '';
                     document.getElementById('email-input').value = '';
